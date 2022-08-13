@@ -288,8 +288,8 @@ LOGGING = {
 }
 
 # Event specific settings
-HACKATHON_NAME = "CoolHacks"
-DEFAULT_FROM_EMAIL = "webmaster@localhost"
+HACKATHON_NAME = "NewHacks"
+DEFAULT_FROM_EMAIL = "webmaster@ieee.utoronto.ca"
 CONTACT_EMAIL = DEFAULT_FROM_EMAIL
 
 REGISTRATION_OPEN_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
