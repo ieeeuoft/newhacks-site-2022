@@ -1040,7 +1040,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
     @override_settings(
         HARDWARE_SIGN_OUT_END_DATE=datetime.now(settings.TZ_INFO)
         - relativedelta(days=1),
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
+        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO),
     )
     def test_submitting_order_after_end_date(self):
         self._login()
@@ -1060,9 +1060,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         expected_response = {"non_field_errors": ["Hardware sign out period is over"]}
         self.assertEqual(response.json(), expected_response)
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_create_simple_order(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1095,9 +1093,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         self.assertEqual(order.items.count(), 1, "More than 1 order item created")
         self.assertCountEqual(order.hardware.all(), [simple_hardware])
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_invalid_input_hardware_limit(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1128,9 +1124,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         }
         self.assertEqual(response.json(), expected_response)
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_invalid_input_hardware_limit_past_orders(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1188,9 +1182,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         }
         self.assertEqual(response.json(), expected_response)
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_hardware_limit_returned_orders(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1242,9 +1234,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         self.assertEqual(order.items.count(), 4)
         self.assertCountEqual(order.hardware.all(), [hardware])
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_hardware_limit_cancelled_orders(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1285,9 +1275,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         self.assertEqual(order.items.all().count(), 1)
         self.assertCountEqual(order.hardware.all(), [hardware])
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_invalid_input_category_limit(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1318,9 +1306,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         }
         self.assertEqual(response.json(), expected_response)
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_invalid_input_category_limit_past_orders(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1378,9 +1364,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         }
         self.assertEqual(response.json(), expected_response)
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_category_limit_returned_orders(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1432,9 +1416,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         self.assertEqual(order.items.count(), 4)
         self.assertCountEqual(order.hardware.all(), [hardware])
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_category_limit_cancelled_orders(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1475,9 +1457,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         self.assertEqual(order.items.count(), 1)
         self.assertCountEqual(order.hardware.all(), [hardware])
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_invalid_inputs_multiple_hardware(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1528,9 +1508,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
             response.json().get("non_field_errors"), expected_error_messages
         )
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_multiple_hardware_success(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1602,9 +1580,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
             order.items.filter(hardware=hardware_2).count(), num_hardware_2_requested
         )
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_repeated_hardware_input_ids(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1650,9 +1626,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         self.assertEqual(order.items.all().count(), num_hardware_requested)
         self.assertCountEqual(order.hardware.all(), [hardware])
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_limited_by_remaining_quantities(self):
         # we won't test the other contributing causes for "remaining quantities"
         # because they should be covered by the tests for remaining quantity field
@@ -1721,9 +1695,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
             order.items.filter(hardware=hardware).count(), num_expected_fulfilled
         )
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_empty_input(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1752,9 +1724,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         expected_response = {"non_field_errors": ["No hardware submitted"]}
         self.assertEqual(response.json(), expected_response)
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_no_remaining_quantities(self):
         self._login()
         self.create_min_number_of_profiles()
@@ -1795,9 +1765,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         }
         self.assertEqual(response.json(), expected_response)
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_team_less_min_order(self):
         self._login()
         self.create_order()
@@ -1810,9 +1778,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
             {"non_field_errors": ["User's team does not meet team size criteria"]},
         )
 
-    @override_settings(
-        HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO)
-    )
+    @override_settings(HARDWARE_SIGN_OUT_START_DATE=datetime.now(settings.TZ_INFO))
     def test_team_more_max_order(self):
         self._login()
         self.create_order()
