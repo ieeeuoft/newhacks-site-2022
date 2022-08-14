@@ -1,7 +1,11 @@
 // Change navbar color on scroll
+// Change height of navbar icon on scroll
 $(document).scroll(function () {
-    let $nav = $(".navbar");
-    $nav.toggleClass("scrolled", $(this).scrollTop() > $nav.height());
+    const $nav = $(".navbar");
+    const $logo = $(".logoNav");
+
+    $nav.toggleClass("navbarScrolled", $(this).scrollTop() > $nav.height());
+    $logo.toggleClass("logoNavScrolled", $(this).scrollTop() > $nav.height());
 });
 
 $(document).ready(function () {
