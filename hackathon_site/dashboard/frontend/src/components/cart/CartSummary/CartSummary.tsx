@@ -31,9 +31,9 @@ const CartSummary = () => {
         }
     };
     const currentDateTime = new Date();
-    const isOutsideSignOutPeriod =
-        currentDateTime < hardwareSignOutStartDate ||
-        currentDateTime > hardwareSignOutEndDate;
+    const isOutsideSignOutPeriod = false;
+    // currentDateTime < hardwareSignOutStartDate ||
+    // currentDateTime > hardwareSignOutEndDate;
 
     return (
         <TitledPaper title="Cart Summary">
