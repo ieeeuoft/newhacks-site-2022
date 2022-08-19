@@ -42,11 +42,17 @@ if DEBUG:
     ]
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 else:
-    # NOTE: If you aren't ieee uoft, put your websites here
-    ALLOWED_HOSTS = ["ieee.utoronto.ca"]
+    ALLOWED_HOSTS = ["newhacks.ca", "www.newhacks.ca"]
     CORS_ORIGIN_REGEX_WHITELIST = [
-        r"^https://ieee\.utoronto.ca:?\d*$",
+        r"^https://(?:www\.)?newhacks.ca:?\d*$",
     ]
+
+    EMAIL_HOST = os.environ.get("EMAIL_HOST", None)
+    EMAIL_PORT = os.environ.get("EMAIL_PORT", None)
+    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", None)
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", None)
+    EMAIL_USE_SSL = True
+    DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_FROM_ADDRESS", "webmaster@localhost")
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -282,8 +288,8 @@ LOGGING = {
 }
 
 # Event specific settings
-HACKATHON_NAME = "CoolHacks"
-DEFAULT_FROM_EMAIL = "webmaster@localhost"
+HACKATHON_NAME = "NewHacks"
+DEFAULT_FROM_EMAIL = "webmaster@ieee.utoronto.ca"
 CONTACT_EMAIL = DEFAULT_FROM_EMAIL
 
 REGISTRATION_OPEN_DATE = datetime(2022, 9, 1, tzinfo=TZ_INFO)
