@@ -28,13 +28,13 @@ class Team(models.Model):
 
 
 class Application(models.Model):
-    GENDER_CHOICES = [
+    PRONOUN_CHOICES = [
         (None, ""),
-        ("male", "Male"),
-        ("female", "Female"),
-        ("non-binary", "Non-binary"),
-        ("other", "Other"),
-        ("no-answer", "Prefer not to answer"),
+        ("he/him", "he/him"),
+        ("she/her", "she/her"),
+        ("they/them", "they/them"),
+        ("other", "other"),
+        ("no-answer", "prefer not to answer"),
     ]
 
     ETHNICITY_CHOICES = [
@@ -62,8 +62,10 @@ class Application(models.Model):
     )
 
     # User Submitted Fields
+    first_name = models.CharField(max_length=255, null=False)
+    last_name = models.CharField(max_length=255, null=False)
     birthday = models.DateField(null=False)
-    gender = models.CharField(max_length=50, choices=GENDER_CHOICES, null=False)
+    pronouns = models.CharField(max_length=50, choices=PRONOUN_CHOICES, null=False)
     ethnicity = models.CharField(max_length=50, choices=ETHNICITY_CHOICES, null=False)
     phone_number = models.CharField(
         max_length=20,
@@ -75,6 +77,9 @@ class Application(models.Model):
             )
         ],
     )
+    email = models.EmailField(max_length=254)
+    city = models.CharField(max_length=255, null=True, blank=True)
+    country = models.CharField(max_length=255, null=True, blank=True)
     school = models.CharField(max_length=255, null=False,)
     study_level = models.CharField(
         max_length=50, choices=STUDY_LEVEL_CHOICES, null=False
@@ -90,6 +95,7 @@ class Application(models.Model):
             ),
         ],
     )
+    program = models.CharField(max_length=255, help_text="Program or Major", null=False)
     resume = models.FileField(
         upload_to="applications/resumes/",
         validators=[
@@ -99,9 +105,12 @@ class Application(models.Model):
         ],
         null=False,
     )
-    q1 = models.TextField(null=False, help_text="First question?", max_length=1000)
-    q2 = models.TextField(null=False, help_text="Second question?", max_length=1000)
-    q3 = models.TextField(null=False, help_text="Third question?", max_length=1000)
+    linkedin = models.CharField(max_length=255, help_text="LinkedIn link", null=True, blank=True)
+    github = models.CharField(max_length=255, help_text="Github Link", null=True, blank=True)
+    devpost = models.CharField(max_length=255, help_text="Devpost Link", null=True, blank=True)
+    q1 = models.TextField(null=False, help_text="Why do you want to participate in NewHacks?", max_length=1000)
+    q2 = models.TextField(null=False, help_text="What is your technical experience with software?", max_length=1000)
+    q3 = models.TextField(null=False, help_text="Describe any past experience with if any.", max_length=1000)
     conduct_agree = models.BooleanField(
         help_text="I have read and agree to the code of conduct.",
         blank=False,

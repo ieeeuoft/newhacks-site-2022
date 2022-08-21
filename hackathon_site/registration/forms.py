@@ -88,14 +88,23 @@ class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
         fields = [
+            "first_name",
+            "last_name",
             "birthday",
-            "gender",
+            "pronouns",
             "ethnicity",
             "phone_number",
+            "email",
+            "city",
+            "country",
             "school",
             "study_level",
             "graduation_year",
+            "program",
             "resume",
+            "linkedin",
+            "github",
+            "devpost",
             "q1",
             "q2",
             "q3",
@@ -113,26 +122,26 @@ class ApplicationForm(forms.ModelForm):
             "q1": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "I enjoy cake",
+                    "placeholder": "I want to participate in NewHacks because",
                     "data-length": 1000,
                 }
             ),
             "q2": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "Cake is wonderful",
+                    "placeholder": "My technical experience with software are",
                     "data-length": 1000,
                 }
             ),
             "q3": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "I could really go for cake right now",
+                    "placeholder": "My past experiences are",
                     "data-length": 1000,
                 }
             ),
             "phone_number": forms.TextInput(attrs={"placeholder": "+1 (123) 456-7890"}),
-            "graduation_year": forms.NumberInput(attrs={"placeholder": 2020}),
+            "graduation_year": forms.NumberInput(attrs={"placeholder": 2022}),
         }
 
     def __init__(self, *args, **kwargs):
