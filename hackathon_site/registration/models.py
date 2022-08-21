@@ -105,12 +105,30 @@ class Application(models.Model):
         ],
         null=False,
     )
-    linkedin = models.CharField(max_length=255, help_text="LinkedIn link", null=True, blank=True)
-    github = models.CharField(max_length=255, help_text="Github Link", null=True, blank=True)
-    devpost = models.CharField(max_length=255, help_text="Devpost Link", null=True, blank=True)
-    q1 = models.TextField(null=False, help_text="Why do you want to participate in NewHacks?", max_length=1000)
-    q2 = models.TextField(null=False, help_text="What is your technical experience with software?", max_length=1000)
-    q3 = models.TextField(null=False, help_text="Describe any past experience with if any.", max_length=1000)
+    linkedin = models.CharField(
+        max_length=255, help_text="LinkedIn link", null=True, blank=True
+    )
+    github = models.CharField(
+        max_length=255, help_text="Github Link", null=True, blank=True
+    )
+    devpost = models.CharField(
+        max_length=255, help_text="Devpost Link", null=True, blank=True
+    )
+    q1 = models.TextField(
+        null=False,
+        help_text="Why do you want to participate in NewHacks?",
+        max_length=1000,
+    )
+    q2 = models.TextField(
+        null=False,
+        help_text="What is your technical experience with software?",
+        max_length=1000,
+    )
+    q3 = models.TextField(
+        null=False,
+        help_text="Describe any past experience with if any.",
+        max_length=1000,
+    )
     conduct_agree = models.BooleanField(
         help_text="I have read and agree to the code of conduct.",
         blank=False,
