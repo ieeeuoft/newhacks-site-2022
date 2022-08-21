@@ -289,7 +289,7 @@ LOGGING = {
 
 # Event specific settings
 HACKATHON_NAME = "NewHacks"
-DEFAULT_FROM_EMAIL = "webmaster@ieee.utoronto.ca"
+DEFAULT_FROM_EMAIL = "hello@newhacks.ca"
 CONTACT_EMAIL = DEFAULT_FROM_EMAIL
 
 REGISTRATION_OPEN_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
@@ -300,14 +300,14 @@ HARDWARE_SIGN_OUT_START_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_END_DATE = datetime(2023, 9, 30, tzinfo=TZ_INFO)
 
 # Registration user requirements
-MINIMUM_AGE = 14
+MINIMUM_AGE = 18
 
 # Registration settings
 ACCOUNT_ACTIVATION_DAYS = 7
 RSVP_DAYS = 7
 
 # Team requirements
-MIN_MEMBERS = 2
+MIN_MEMBERS = 3
 MAX_MEMBERS = 4
 
 # The time at which waitlisted people will start being accepted into
@@ -323,4 +323,4 @@ PARTICIPANT_PACKAGE_LINK = "#"
 
 # Note this is in the form (chat_room_name, chat_room_link)
 # Chat room name is such as the following: Slack, Discord
-CHAT_ROOM = ("Slack", "https://slack.com")
+CHAT_ROOM = ("Discord", "https://discord.com")
