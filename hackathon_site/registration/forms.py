@@ -88,13 +88,10 @@ class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
         fields = [
-            "first_name",
-            "last_name",
             "birthday",
             "pronouns",
             "ethnicity",
             "phone_number",
-            "email",
             "city",
             "country",
             "school",
@@ -109,7 +106,9 @@ class ApplicationForm(forms.ModelForm):
             "q2",
             "q3",
             "conduct_agree",
-            "data_agree",
+            "logistics_agree",
+            "email_agree",
+            "resume_sharing"
         ]
         widgets = {
             "birthday": forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
@@ -122,21 +121,21 @@ class ApplicationForm(forms.ModelForm):
             "q1": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "I want to participate in NewHacks because",
+                    "placeholder": "I want to participate in NewHacks because...",
                     "data-length": 1000,
                 }
             ),
             "q2": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "My technical experience with software are",
+                    "placeholder": "My technical experience with software are...",
                     "data-length": 1000,
                 }
             ),
             "q3": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "My past experiences are",
+                    "placeholder": "My past experiences are...",
                     "data-length": 1000,
                 }
             ),

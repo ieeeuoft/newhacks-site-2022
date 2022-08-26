@@ -30,9 +30,9 @@ class Team(models.Model):
 class Application(models.Model):
     PRONOUN_CHOICES = [
         (None, ""),
-        ("he/him", "he/him"),
-        ("she/her", "she/her"),
-        ("they/them", "they/them"),
+        ("he-him", "he/him"),
+        ("she-her", "she/her"),
+        ("they-them", "they/them"),
         ("other", "other"),
         ("no-answer", "prefer not to answer"),
     ]
@@ -62,8 +62,6 @@ class Application(models.Model):
     )
 
     # User Submitted Fields
-    first_name = models.CharField(max_length=255, null=False)
-    last_name = models.CharField(max_length=255, null=False)
     birthday = models.DateField(null=False)
     pronouns = models.CharField(max_length=50, choices=PRONOUN_CHOICES, null=False)
     ethnicity = models.CharField(max_length=50, choices=ETHNICITY_CHOICES, null=False)
@@ -77,7 +75,6 @@ class Application(models.Model):
             )
         ],
     )
-    email = models.EmailField(max_length=254)
     city = models.CharField(max_length=255, null=True, blank=True)
     country = models.CharField(max_length=255, null=True, blank=True)
     school = models.CharField(max_length=255, null=False,)
@@ -105,15 +102,9 @@ class Application(models.Model):
         ],
         null=False,
     )
-    linkedin = models.CharField(
-        max_length=255, help_text="LinkedIn link", null=True, blank=True
-    )
-    github = models.CharField(
-        max_length=255, help_text="Github Link", null=True, blank=True
-    )
-    devpost = models.CharField(
-        max_length=255, help_text="Devpost Link", null=True, blank=True
-    )
+    linkedin = models.URLField(max_length=200,  help_text="LinkedIn link", null=True, blank=True)
+    github = models.URLField(max_length=200,  help_text="Github link", null=True, blank=True)
+    devpost = models.URLField(max_length=200,  help_text="Devpost link", null=True, blank=True)
     q1 = models.TextField(
         null=False,
         help_text="Why do you want to participate in NewHacks?",
@@ -126,18 +117,37 @@ class Application(models.Model):
     )
     q3 = models.TextField(
         null=False,
-        help_text="Describe any past experience with if any.",
+        help_text="Describe any past experience if any.",
         max_length=1000,
     )
     conduct_agree = models.BooleanField(
-        help_text="I have read and agree to the code of conduct.",
+        help_text="I have read and agree to the "
+                  '<a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH code of conduct</a>.',
         blank=False,
         null=False,
     )
-    data_agree = models.BooleanField(
-        help_text="I consent to have the data in this application collected for event purposes "
-        "including administration, ranking, and event communication.",
+    logistics_agree = models.BooleanField(
+        help_text="I authorize you to share my application/registration information with Major League Hacking"
+                  "for event administration, ranking, and MLH administration in-line with the "
+                  '<a href="https://mlh.io/privacy">MLH Privacy Policy</a>. '
+                  "I further agree to the terms of both the "
+                  '<a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions">MLH Contest Terms and Conditions</a>'
+                  " and the "
+                  '<a href="https://mlh.io/privacy">MLH Privacy Policy.</a>',
         blank=False,
+        null=False,
+    )
+
+    email_agree = models.BooleanField(
+        help_text="I authorize MLH to send me pre- and post-event informational"
+                  " emails, which contain free credit and opportunities from their partners.",
+        blank=True,
+        null=False,
+    )
+
+    resume_sharing = models.BooleanField(
+        help_text="I consent to IEEE UofT sharing my resume with event sponsors.",
+        blank=True,
         null=False,
     )
 
