@@ -84,18 +84,28 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.data = {
-            "birthday": date(2000, 7, 7),
-            "gender": "no-answer",
+            "birthday": date(2000, 1, 1),
+            "pronouns": "no-answer",
             "ethnicity": "no-answer",
             "phone_number": "1234567890",
+            "city": "Toronto",
+            "country": "Canada",
             "school": "UofT",
             "study_level": "other",
             "graduation_year": 2020,
-            "q1": "hi",
-            "q2": "there",
-            "q3": "foo",
+            "program": "Engineering",
+            "resume": "uploads/resumes/my_resume.pdf",
+            "linkedin": "https://www.linkedin.com/feed/",
+            "github": "https://github.com/",
+            "devpost": "https://devpost.com/",
+            "why_participate": "hi",
+            "what_technical_experience": "there",
+            "what_past_experience": "foo",
             "conduct_agree": True,
+            "email_agree": True,
             "data_agree": True,
+            "logistics_agree": True,
+            "resume_sharing": True,
         }
         self.files = self._build_files()
 
@@ -125,7 +135,10 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
         return ApplicationForm(user=user, data=data, files=files)
 
     def test_fields_are_required(self):
+        optional_fields = {"linkedin", "github", "devpost", "logistics_agree", "email_agree", "data_agree", "resume_sharing"}
         for field in self.data:
+            if field in optional_fields:
+                continue
             bad_data = self.data.copy()
             del bad_data[field]
 

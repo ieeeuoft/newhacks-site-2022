@@ -171,19 +171,28 @@ class ApplicationViewTestCase(SetupUserMixin, TestCase):
         self.view = reverse("registration:application")
 
         self.data = {
-            "birthday": date(2020, 9, 8),
-            "gender": "male",
-            "ethnicity": "caucasian",
-            "phone_number": "2262208655",
+            "birthday": date(2000, 1, 1),
+            "pronouns": "no-answer",
+            "ethnicity": "no-answer",
+            "phone_number": "1234567890",
+            "city": "Toronto",
+            "country": "Canada",
             "school": "UofT",
             "study_level": "other",
             "graduation_year": 2020,
-            "q1": "hi",
-            "q2": "there",
-            "q3": "foo",
-            "conduct_agree": True,
-            "data_agree": True,
+            "program": "Engineering",
             "resume": "uploads/resumes/my_resume.pdf",
+            "linkedin": "https://www.linkedin.com/feed/",
+            "github": "https://github.com/",
+            "devpost": "https://devpost.com/",
+            "why_participate": "hi",
+            "what_technical_experience": "there",
+            "what_past_experience": "foo",
+            "conduct_agree": True,
+            "email_agree": True,
+            "data_agree": True,
+            "logistics_agree": True,
+            "resume_sharing": True,
         }
 
         self.team = Team.objects.create()

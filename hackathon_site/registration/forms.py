@@ -102,9 +102,9 @@ class ApplicationForm(forms.ModelForm):
             "linkedin",
             "github",
             "devpost",
-            "q1",
-            "q2",
-            "q3",
+            "why_participate",
+            "what_technical_experience",
+            "what_past_experience",
             "conduct_agree",
             "logistics_agree",
             "email_agree",
@@ -118,21 +118,21 @@ class ApplicationForm(forms.ModelForm):
                 choices=((None, ""),),
             ),
             "resume": MaterialFileInput(),
-            "q1": forms.Textarea(
+            "why_participate": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
                     "placeholder": "I want to participate in NewHacks because...",
                     "data-length": 1000,
                 }
             ),
-            "q2": forms.Textarea(
+            "what_technical_experience": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
                     "placeholder": "My technical experience with software are...",
                     "data-length": 1000,
                 }
             ),
-            "q3": forms.Textarea(
+            "what_past_experience": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
                     "placeholder": "My past experiences are...",
@@ -148,7 +148,6 @@ class ApplicationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.label_suffix = ""
         self.fields["conduct_agree"].required = True
-        self.fields["data_agree"].required = True
 
     def clean(self):
         if not is_registration_open():
