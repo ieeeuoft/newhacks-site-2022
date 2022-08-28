@@ -63,7 +63,9 @@ class Application(models.Model):
 
     # User Submitted Fields
     birthday = models.DateField(null=False)
-    pronouns = models.CharField(max_length=50, choices=PRONOUN_CHOICES, null=False, default="")
+    pronouns = models.CharField(
+        max_length=50, choices=PRONOUN_CHOICES, null=False, default=""
+    )
     ethnicity = models.CharField(max_length=50, choices=ETHNICITY_CHOICES, null=False)
     phone_number = models.CharField(
         max_length=20,
@@ -77,7 +79,7 @@ class Application(models.Model):
     )
     city = models.CharField(max_length=255, null=False)
     country = models.CharField(max_length=255, null=False)
-    school = models.CharField(max_length=255, null=False, )
+    school = models.CharField(max_length=255, null=False,)
     study_level = models.CharField(
         max_length=50, choices=STUDY_LEVEL_CHOICES, null=False
     )
@@ -92,7 +94,9 @@ class Application(models.Model):
             ),
         ],
     )
-    program = models.CharField(max_length=255, help_text="Program or Major", null=False, default="")
+    program = models.CharField(
+        max_length=255, help_text="Program or Major", null=False, default=""
+    )
     resume = models.FileField(
         upload_to="applications/resumes/",
         validators=[
@@ -102,9 +106,15 @@ class Application(models.Model):
         ],
         null=False,
     )
-    linkedin = models.URLField(max_length=200, help_text="LinkedIn link", null=True, blank=True)
-    github = models.URLField(max_length=200, help_text="Github link", null=True, blank=True)
-    devpost = models.URLField(max_length=200, help_text="Devpost link", null=True, blank=True)
+    linkedin = models.URLField(
+        max_length=200, help_text="LinkedIn link", null=True, blank=True
+    )
+    github = models.URLField(
+        max_length=200, help_text="Github link", null=True, blank=True
+    )
+    devpost = models.URLField(
+        max_length=200, help_text="Devpost link", null=True, blank=True
+    )
     why_participate = models.TextField(
         null=False,
         help_text="Why do you want to participate in NewHacks?",
@@ -116,43 +126,41 @@ class Application(models.Model):
         max_length=1000,
     )
     what_past_experience = models.TextField(
-        null=False,
-        help_text="Describe any past experience if any.",
-        max_length=1000,
+        null=False, help_text="Describe any past experience if any.", max_length=1000,
     )
     conduct_agree = models.BooleanField(
         help_text="I have read and agree to the "
-                  '<a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH code of conduct</a>.',
+        '<a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH code of conduct</a>.',
         blank=False,
         null=False,
-        default=False
+        default=False,
     )
     logistics_agree = models.BooleanField(
         help_text="I authorize you to share my application/registration information with Major League Hacking"
-                  "for event administration, ranking, and MLH administration in-line with the "
-                  '<a href="https://mlh.io/privacy">MLH Privacy Policy</a>. '
-                  "I further agree to the terms of both the "
-                  '<a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions">MLH Contest Terms and Conditions</a>'
-                  " and the "
-                  '<a href="https://mlh.io/privacy">MLH Privacy Policy.</a>',
+        "for event administration, ranking, and MLH administration in-line with the "
+        '<a href="https://mlh.io/privacy">MLH Privacy Policy</a>. '
+        "I further agree to the terms of both the "
+        '<a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions">MLH Contest Terms and Conditions</a>'
+        " and the "
+        '<a href="https://mlh.io/privacy">MLH Privacy Policy.</a>',
         blank=False,
         null=False,
-        default=False
+        default=False,
     )
 
     email_agree = models.BooleanField(
         help_text="I authorize MLH to send me pre- and post-event informational"
-                  " emails, which contain free credit and opportunities from their partners.",
+        " emails, which contain free credit and opportunities from their partners.",
         blank=True,
         null=False,
-        default=False
+        default=False,
     )
 
     resume_sharing = models.BooleanField(
         help_text="I consent to IEEE UofT sharing my resume with event sponsors.",
         blank=True,
         null=False,
-        default=False
+        default=False,
     )
 
     rsvp = models.BooleanField(null=True)

@@ -113,8 +113,7 @@ class ApplicationResource(resources.ModelResource):
             "conduct_agree",
             "logistics_agree",
             "email_agree",
-            "resume_sharing"
-            "review__status",
+            "resume_sharing" "review__status",
             "rsvp",
             "created_at",
             "updated_at",

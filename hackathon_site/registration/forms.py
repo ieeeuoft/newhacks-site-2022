@@ -108,7 +108,7 @@ class ApplicationForm(forms.ModelForm):
             "conduct_agree",
             "logistics_agree",
             "email_agree",
-            "resume_sharing"
+            "resume_sharing",
         ]
         widgets = {
             "birthday": forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
