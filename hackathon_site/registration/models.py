@@ -152,14 +152,14 @@ class Application(models.Model):
         help_text="I authorize MLH to send me pre- and post-event informational"
         " emails, which contain free credit and opportunities from their partners.",
         blank=True,
-        null=False,
+        null=True,
         default=False,
     )
 
     resume_sharing = models.BooleanField(
         help_text="I consent to IEEE UofT sharing my resume with event sponsors.",
         blank=True,
-        null=False,
+        null=True,
         default=False,
     )
 

@@ -190,7 +190,6 @@ class ApplicationViewTestCase(SetupUserMixin, TestCase):
             "what_past_experience": "foo",
             "conduct_agree": True,
             "email_agree": True,
-            "data_agree": True,
             "logistics_agree": True,
             "resume_sharing": True,
         }

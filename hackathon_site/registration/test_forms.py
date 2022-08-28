@@ -90,11 +90,10 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
             "phone_number": "1234567890",
             "city": "Toronto",
             "country": "Canada",
-            "school": "UofT",
+            "school": "University of Toronto",
             "study_level": "other",
             "graduation_year": 2020,
             "program": "Engineering",
-            "resume": "uploads/resumes/my_resume.pdf",
             "linkedin": "https://www.linkedin.com/feed/",
             "github": "https://github.com/",
             "devpost": "https://devpost.com/",
@@ -103,7 +102,6 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
             "what_past_experience": "foo",
             "conduct_agree": True,
             "email_agree": True,
-            "data_agree": True,
             "logistics_agree": True,
             "resume_sharing": True,
         }
@@ -139,10 +137,9 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
             "linkedin",
             "github",
             "devpost",
-            "logistics_agree",
             "email_agree",
-            "data_agree",
             "resume_sharing",
+            "logistics_agree",
         }
         for field in self.data:
             if field in optional_fields:
