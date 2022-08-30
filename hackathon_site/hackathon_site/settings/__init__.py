@@ -292,7 +292,7 @@ HACKATHON_NAME = "NewHacks"
 DEFAULT_FROM_EMAIL = "hello@newhacks.ca"
 CONTACT_EMAIL = DEFAULT_FROM_EMAIL
 
-REGISTRATION_OPEN_DATE = datetime(2022, 9, 1, 0, 0, 0, tzinfo=TZ_INFO)
+REGISTRATION_OPEN_DATE = datetime(2022, 9, 5, 0, 0, 0, tzinfo=TZ_INFO)
 REGISTRATION_CLOSE_DATE = datetime(2022, 10, 20, 11, 59, 0, tzinfo=TZ_INFO)
 EVENT_START_DATE = datetime(2022, 11, 5, 9, 0, 0, tzinfo=TZ_INFO)
 EVENT_END_DATE = datetime(2022, 11, 6, 17, 0, 0, tzinfo=TZ_INFO)
