@@ -45,7 +45,6 @@ class ApplicationResource(resources.ModelResource):
             "study_level",
             "graduation_year",
             "review__status",
-            "rsvp",
             "created_at",
             "updated_at",
         )
@@ -61,7 +60,6 @@ class ApplicationResource(resources.ModelResource):
             "study_level",
             "graduation_year",
             "review__status",
-            "rsvp",
             "created_at",
             "updated_at",
         )
@@ -79,7 +77,6 @@ class ApplicationResource(resources.ModelResource):
             "study_level",
             "graduation_year",
             "review_status",
-            "rsvp",
             "created_at",
             "updated_at",
         ]
