@@ -239,7 +239,7 @@ if DEBUG:
     if not os.path.isdir(MEDIA_ROOT):
         os.makedirs(MEDIA_ROOT)
 
-    EMAIL_FILE_PATH = os.path.join(BASE_DIR,'emails')
+    EMAIL_FILE_PATH = os.path.join(BASE_DIR, "emails")
 
     if not os.path.isdir(EMAIL_FILE_PATH):
         os.makedirs(EMAIL_FILE_PATH)
