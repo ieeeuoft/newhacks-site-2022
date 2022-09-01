@@ -107,26 +107,28 @@ class Application(models.Model):
         null=False,
     )
     linkedin = models.URLField(
-        max_length=200, help_text="LinkedIn link", null=True, blank=True
+        max_length=200, help_text="LinkedIn Profile", null=True, blank=True
     )
     github = models.URLField(
-        max_length=200, help_text="Github link", null=True, blank=True
+        max_length=200, help_text="Github Profile", null=True, blank=True
     )
     devpost = models.URLField(
-        max_length=200, help_text="Devpost link", null=True, blank=True
+        max_length=200, help_text="Devpost Profile", null=True, blank=True
     )
     why_participate = models.TextField(
         null=False,
-        help_text="Why do you want to participate in NewHacks?",
+        help_text="Why do you want to participate in NewHacks? (1000 char. max)",
         max_length=1000,
     )
     what_technical_experience = models.TextField(
         null=False,
-        help_text="What is your technical experience with software?",
+        help_text="What is your technical experience with software? (1000 char. max)",
         max_length=1000,
     )
     what_past_experience = models.TextField(
-        null=False, help_text="Describe any past experience if any.", max_length=1000,
+        null=False,
+        help_text="If you’ve been to a hackathon, briefly tell us your experience. If not, describe what you expect to see and experience. (1000 char. max)",
+        max_length=1000,
     )
     conduct_agree = models.BooleanField(
         help_text="I have read and agree to the "
@@ -137,7 +139,7 @@ class Application(models.Model):
     )
     logistics_agree = models.BooleanField(
         help_text="I authorize you to share my application/registration information with Major League Hacking"
-        "for event administration, ranking, and MLH administration in-line with the "
+        " for event administration, ranking, and MLH administration in-line with the "
         '<a href="https://mlh.io/privacy">MLH Privacy Policy</a>. '
         "I further agree to the terms of both the "
         '<a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions">MLH Contest Terms and Conditions</a>'

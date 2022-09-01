@@ -140,7 +140,7 @@ class ApplicationForm(forms.ModelForm):
                 }
             ),
             "phone_number": forms.TextInput(attrs={"placeholder": "+1 (123) 456-7890"}),
-            "graduation_year": forms.NumberInput(attrs={"placeholder": 2022}),
+            "graduation_year": forms.NumberInput(attrs={"placeholder": 2023}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -148,6 +148,7 @@ class ApplicationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.label_suffix = ""
         self.fields["conduct_agree"].required = True
+        self.fields["logistics_agree"].required = True
 
     def clean(self):
         if not is_registration_open():

@@ -94,9 +94,6 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
             "study_level": "other",
             "graduation_year": 2020,
             "program": "Engineering",
-            "linkedin": "https://www.linkedin.com/feed/",
-            "github": "https://github.com/",
-            "devpost": "https://devpost.com/",
             "why_participate": "hi",
             "what_technical_experience": "there",
             "what_past_experience": "foo",
@@ -157,6 +154,17 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn("resume", form.errors)
         self.assertIn("This field is required.", form.errors["resume"])
+
+    def test_with_optional_fields(self):
+        data = self.data.copy()
+        data["linkedin"] = "https://linkedin.com"
+        data["github"] = "https://github.com"
+        data["devpost"] = "https://devpost.com"
+        data["resume_sharing"] = True
+        data["logistics_agree"] = True
+
+        form = self._build_form(data=data)
+        self.assertTrue(form.is_valid())
 
     def test_user_already_has_application(self):
         team = Team.objects.create()
