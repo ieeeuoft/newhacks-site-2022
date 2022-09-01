@@ -342,6 +342,21 @@ strong {
 }
 // End of video section
 
+// Past projects section
+.past-projects {
+    display: flex;
+    justify-content: center;
+
+    a {
+        color: #dad1e9;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+// End of past projects section
+
 // Carousel section
 .carousel {
     height: 333px !important;
