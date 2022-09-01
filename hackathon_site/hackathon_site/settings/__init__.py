@@ -289,25 +289,25 @@ LOGGING = {
 
 # Event specific settings
 HACKATHON_NAME = "NewHacks"
-DEFAULT_FROM_EMAIL = "webmaster@ieee.utoronto.ca"
+DEFAULT_FROM_EMAIL = "hello@newhacks.ca"
 CONTACT_EMAIL = DEFAULT_FROM_EMAIL
 
-REGISTRATION_OPEN_DATE = datetime(2022, 9, 1, tzinfo=TZ_INFO)
-REGISTRATION_CLOSE_DATE = datetime(2022, 10, 21, tzinfo=TZ_INFO)
+REGISTRATION_OPEN_DATE = datetime(2022, 9, 5, 0, 0, 0, tzinfo=TZ_INFO)
+REGISTRATION_CLOSE_DATE = datetime(2022, 10, 20, 11, 59, 0, tzinfo=TZ_INFO)
 EVENT_START_DATE = datetime(2022, 11, 5, 9, 0, 0, tzinfo=TZ_INFO)
 EVENT_END_DATE = datetime(2022, 11, 6, 17, 0, 0, tzinfo=TZ_INFO)
-HARDWARE_SIGN_OUT_START_DATE = datetime(2022, 10, 21, tzinfo=TZ_INFO)
+HARDWARE_SIGN_OUT_START_DATE = datetime(2022, 10, 20, 11, 59, 0, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_END_DATE = EVENT_END_DATE
 
 # Registration user requirements
-MINIMUM_AGE = 14
+MINIMUM_AGE = 18
 
 # Registration settings
 ACCOUNT_ACTIVATION_DAYS = 7
 RSVP_DAYS = 7
 
 # Team requirements
-MIN_MEMBERS = 2
+MIN_MEMBERS = 3
 MAX_MEMBERS = 4
 
 # The time at which waitlisted people will start being accepted into
@@ -323,4 +323,4 @@ PARTICIPANT_PACKAGE_LINK = "#"
 
 # Note this is in the form (chat_room_name, chat_room_link)
 # Chat room name is such as the following: Slack, Discord
-CHAT_ROOM = ("Slack", "https://slack.com")
+CHAT_ROOM = ("Discord", "https://discord.com")

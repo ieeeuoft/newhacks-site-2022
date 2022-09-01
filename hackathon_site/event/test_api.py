@@ -667,9 +667,6 @@ class TeamIncidentListViewPostTestCase(SetupUserMixin, APITestCase):
 
         response = self.client.post(self.view, request_data)
 
-        print(response)
-        print(request_data)
-
         self.assertEqual(
             response.json(), {"detail": "Can only create incidents for your own team."}
         )

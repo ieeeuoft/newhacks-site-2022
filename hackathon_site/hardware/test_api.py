@@ -979,6 +979,7 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
     def create_min_number_of_profiles(self):
         Profile.objects.create(user=self.user, team=self.team)
         Profile.objects.create(user=self.user2, team=self.team)
+        Profile.objects.create(user=self.user3, team=self.team)
 
     def create_order(self):
         self.hardware1 = Hardware.objects.create(
@@ -1784,7 +1785,6 @@ class OrderListViewPostTestCase(SetupUserMixin, APITestCase):
         self.create_order()
 
         self.create_min_number_of_profiles()
-        Profile.objects.create(user=self.user3, team=self.team)
         Profile.objects.create(user=self.user4, team=self.team)
         Profile.objects.create(user=self.user5, team=self.team)
 
