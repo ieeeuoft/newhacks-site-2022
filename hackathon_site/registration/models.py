@@ -107,13 +107,13 @@ class Application(models.Model):
         null=False,
     )
     linkedin = models.URLField(
-        max_length=200, help_text="LinkedIn Profile", null=True, blank=True
+        max_length=200, help_text="LinkedIn Profile (Optional)", null=True, blank=True
     )
     github = models.URLField(
-        max_length=200, help_text="Github Profile", null=True, blank=True
+        max_length=200, help_text="Github Profile (Optional)", null=True, blank=True
     )
     devpost = models.URLField(
-        max_length=200, help_text="Devpost Profile", null=True, blank=True
+        max_length=200, help_text="Devpost Profile (Optional)", null=True, blank=True
     )
     why_participate = models.TextField(
         null=False,
@@ -132,7 +132,7 @@ class Application(models.Model):
     )
     conduct_agree = models.BooleanField(
         help_text="I have read and agree to the "
-        '<a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH code of conduct</a>.',
+        '<a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" rel="noopener noreferrer" target="_blank">MLH code of conduct</a>.',
         blank=False,
         null=False,
         default=False,
@@ -140,11 +140,11 @@ class Application(models.Model):
     logistics_agree = models.BooleanField(
         help_text="I authorize you to share my application/registration information with Major League Hacking"
         " for event administration, ranking, and MLH administration in-line with the "
-        '<a href="https://mlh.io/privacy">MLH Privacy Policy</a>. '
+        '<a href="https://mlh.io/privacy" rel="noopener noreferrer" target="_blank">MLH Privacy Policy</a>. '
         "I further agree to the terms of both the "
-        '<a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions">MLH Contest Terms and Conditions</a>'
+        '<a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md" rel="noopener noreferrer" target="_blank">MLH Contest Terms and Conditions</a>'
         " and the "
-        '<a href="https://mlh.io/privacy">MLH Privacy Policy.</a>',
+        '<a href="https://mlh.io/privacy" rel="noopener noreferrer" target="_blank">MLH Privacy Policy.</a>',
         blank=False,
         null=False,
         default=False,
