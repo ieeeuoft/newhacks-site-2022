@@ -89,18 +89,26 @@ class ApplicationForm(forms.ModelForm):
         model = Application
         fields = [
             "birthday",
-            "gender",
+            "pronouns",
             "ethnicity",
             "phone_number",
+            "city",
+            "country",
             "school",
             "study_level",
             "graduation_year",
+            "program",
             "resume",
-            "q1",
-            "q2",
-            "q3",
+            "linkedin",
+            "github",
+            "devpost",
+            "why_participate",
+            "what_technical_experience",
+            "what_past_experience",
             "conduct_agree",
-            "data_agree",
+            "logistics_agree",
+            "email_agree",
+            "resume_sharing",
         ]
         widgets = {
             "birthday": forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
@@ -110,29 +118,29 @@ class ApplicationForm(forms.ModelForm):
                 choices=((None, ""),),
             ),
             "resume": MaterialFileInput(),
-            "q1": forms.Textarea(
+            "why_participate": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "I enjoy cake",
+                    "placeholder": "I want to participate in NewHacks because...",
                     "data-length": 1000,
                 }
             ),
-            "q2": forms.Textarea(
+            "what_technical_experience": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "Cake is wonderful",
+                    "placeholder": "My technical experience with software are...",
                     "data-length": 1000,
                 }
             ),
-            "q3": forms.Textarea(
+            "what_past_experience": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "I could really go for cake right now",
+                    "placeholder": "My past experiences are...",
                     "data-length": 1000,
                 }
             ),
             "phone_number": forms.TextInput(attrs={"placeholder": "+1 (123) 456-7890"}),
-            "graduation_year": forms.NumberInput(attrs={"placeholder": 2020}),
+            "graduation_year": forms.NumberInput(attrs={"placeholder": 2023}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -140,7 +148,7 @@ class ApplicationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.label_suffix = ""
         self.fields["conduct_agree"].required = True
-        self.fields["data_agree"].required = True
+        self.fields["logistics_agree"].required = True
 
     def clean(self):
         if not is_registration_open():
