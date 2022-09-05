@@ -40,7 +40,7 @@ if DEBUG:
     CORS_ORIGIN_REGEX_WHITELIST = [
         r"^https?://localhost:?\d*$",
     ]
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 else:
     ALLOWED_HOSTS = ["newhacks.ca", "www.newhacks.ca"]
     CORS_ORIGIN_REGEX_WHITELIST = [
@@ -238,6 +238,11 @@ if DEBUG:
 
     if not os.path.isdir(MEDIA_ROOT):
         os.makedirs(MEDIA_ROOT)
+
+    EMAIL_FILE_PATH = os.path.join(BASE_DIR, "emails")
+
+    if not os.path.isdir(EMAIL_FILE_PATH):
+        os.makedirs(EMAIL_FILE_PATH)
 else:
     # You will almost certainly want to change this
     # Remember to create this folder on your server
