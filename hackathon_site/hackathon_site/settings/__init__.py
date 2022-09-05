@@ -45,6 +45,7 @@ else:
     ALLOWED_HOSTS = ["newhacks.ca", "www.newhacks.ca"]
     CORS_ORIGIN_REGEX_WHITELIST = [
         r"^https://(?:www\.)?newhacks.ca:?\d*$",
+        r"^http://(?:www\.)?hardware.newhacks.ca:?\d*$",
     ]
 
     EMAIL_HOST = os.environ.get("EMAIL_HOST", None)
