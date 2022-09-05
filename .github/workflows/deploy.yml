@@ -107,6 +107,22 @@ jobs:
           ssh-keyscan -t ed25519 ${{ secrets.SWARM_MANAGER_IP }} >> ~/.ssh/known_hosts
           echo "${{ secrets.SSH_PRIVATE_KEY }}" >> ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
+      - name: Build frontend
+        run: |
+          cd hackathon_site/dashboard/frontend
+          npm install
+          npm run build
+        name: Transfer frontend files to server
+        uses: appleboy/scp-action@v0.1.1
+        with:
+          host: ${{ secrets.SWARM_MANAGER_IP }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          overwrite: true
+          # scp-action doesn't obey working-directory, runs at repo root
+          source: "hackathon_site/dashboard/frontend/build/"
+          target: "/usr/src/${{ env.IMAGE_NAME }}"
+          strip_components: 3
       - name: Bring up deployment
         env:
           DOCKER_HOST: ssh://${{ secrets.SSH_USER }}@${{ secrets.SWARM_MANAGER_IP }}
