@@ -89,7 +89,8 @@ export const EditTeam = ({ teamCode, canChangeTeam, teamSize }: TeamModalProps) 
             <div className={styles.editTeamModal}>
                 <div className={styles.editTeamModalDiv}>
                     <Typography variant="body1">
-                        Create a team with up to 4 people. Share your code with others or join another team.
+                        Create a team with up to 4 people. Share your code with others
+                        or join another team.
                     </Typography>
                     <Typography variant="body2" className={styles.heading}>
                         Note: You do not have to stay in the same team you applied with.
