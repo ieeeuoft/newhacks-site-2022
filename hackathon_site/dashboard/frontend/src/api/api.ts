@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "development") {
 
     SERVER_URL = process.env.REACT_APP_DEV_SERVER_URL?.replace(/\/$/, "");
 } else {
-    SERVER_URL = "";
+    SERVER_URL = "http://newhacks.ca";
 }
 
 export const getCsrfToken = () => {
