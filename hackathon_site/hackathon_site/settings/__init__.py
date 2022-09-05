@@ -46,7 +46,7 @@ else:
     CORS_ORIGIN_REGEX_WHITELIST = [
         r"^https://(?:www\.)?newhacks.ca:?\d*$",
         r"^https://(?:www\.)?newhacks.ca(/\w+)+"
-        r"^http://(?:www\.)?hardware.newhacks.ca(/\w+)+"
+        r"^http://(?:www\.)?hardware.newhacks.ca(/\w+)+",
     ]
 
     EMAIL_HOST = os.environ.get("EMAIL_HOST", None)
