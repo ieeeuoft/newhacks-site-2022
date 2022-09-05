@@ -112,7 +112,7 @@ jobs:
           cd hackathon_site/dashboard/frontend
           npm install
           npm run build
-        name: Transfer frontend files to server
+      - name: Transfer frontend files to server
         uses: appleboy/scp-action@v0.1.1
         with:
           host: ${{ secrets.SWARM_MANAGER_IP }}
