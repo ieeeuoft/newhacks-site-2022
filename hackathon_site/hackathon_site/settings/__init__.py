@@ -42,11 +42,10 @@ if DEBUG:
     ]
     EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 else:
-    ALLOWED_HOSTS = ["newhacks.ca", "www.newhacks.ca"]
+    ALLOWED_HOSTS = ["newhacks.ca", "www.newhacks.ca", "hardware.newhacks.ca"]
     CORS_ORIGIN_REGEX_WHITELIST = [
-        r"^https://(?:www\.)?newhacks.ca:?\d*$",
         r"^https://(?:www\.)?newhacks.ca(/\w+)+"
-        r"^http://(?:www\.)?hardware.newhacks.ca(/\w+)+",
+        r"^https://(?:www\.)?hardware.newhacks.ca(/\w+)+",
     ]
 
     EMAIL_HOST = os.environ.get("EMAIL_HOST", None)
