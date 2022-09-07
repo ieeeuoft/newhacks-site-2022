@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "development") {
 
     SERVER_URL = process.env.REACT_APP_DEV_SERVER_URL?.replace(/\/$/, "");
 } else {
-    SERVER_URL = "";
+    SERVER_URL = "https://newhacks.ca";
 }
 
 export const getCsrfToken = () => {
@@ -82,7 +82,7 @@ export const get = <T>(
     return axios.get<T>(`${SERVER_URL}/${uri}`, makeConfig());
 };
 
-export const post = <T>(uri: string, data?: any) => {
+export const post = <T>(uri: string, data?: any): Promise<AxiosResponse<T>> => {
     uri = cleanURI(uri);
     return axios.post(`${SERVER_URL}/${uri}`, data, makeConfig());
 };

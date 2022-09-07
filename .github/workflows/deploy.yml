@@ -73,6 +73,11 @@ jobs:
         env:
           SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
         run: python manage.py collectstatic
+      - name: Build frontend
+        working-directory: hackathon_site/dashboard/frontend
+        run: |
+          yarn install
+          yarn run build
       - name: Set environment variables in .env
         run: |
           echo 'DEBUG=0' >> .env
@@ -107,12 +112,7 @@ jobs:
           ssh-keyscan -t ed25519 ${{ secrets.SWARM_MANAGER_IP }} >> ~/.ssh/known_hosts
           echo "${{ secrets.SSH_PRIVATE_KEY }}" >> ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-      - name: Build frontend
-        run: |
-          cd hackathon_site/dashboard/frontend
-          npm install
-          npm run build
-        name: Transfer frontend files to server
+      - name: Transfer frontend files to server
         uses: appleboy/scp-action@v0.1.1
         with:
           host: ${{ secrets.SWARM_MANAGER_IP }}
