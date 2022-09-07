@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - 'develop'
-      - 'NH-16-deploy-action-for-hss'
 
 env:
   REGISTRY: ghcr.io
