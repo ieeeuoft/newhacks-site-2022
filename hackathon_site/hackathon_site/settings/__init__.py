@@ -52,8 +52,13 @@ else:
         r"^https://(?:www\.)?newhacks\.ca",
         r"^https://(?:www\.)?\w+\.newhacks\.ca",
     ]
-    CSRF_COOKIE_DOMAIN = [".newhacks.ca", ".hardware.newhacks.ca"]
-    CSRF_TRUSTED_ORIGINS = ["newhacks.ca", ".newhacks.ca", ".hardware.newhacks.ca"]
+    CSRF_COOKIE_DOMAIN = ".newhacks.ca"
+    CSRF_TRUSTED_ORIGINS = [
+        "newhacks.ca",
+        "www.newhacks.ca",
+        "hardware.newhacks.ca",
+        "www.hardware.newhacks.ca",
+    ]
 
     EMAIL_HOST = os.environ.get("EMAIL_HOST", None)
     EMAIL_PORT = os.environ.get("EMAIL_PORT", None)
