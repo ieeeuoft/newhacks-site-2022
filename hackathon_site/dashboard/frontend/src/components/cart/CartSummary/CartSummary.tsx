@@ -15,11 +15,14 @@ import { teamSizeSelector } from "slices/event/teamSlice";
 import {
     hardwareSignOutEndDate,
     hardwareSignOutStartDate,
+    hssTestUserGroup,
     maxTeamSize,
     minTeamSize,
 } from "constants.js";
+import { userSelector } from "slices/users/userSlice";
 
 const CartSummary = () => {
+    const user = useSelector(userSelector);
     const cartQuantity = useSelector(cartTotalSelector);
     const cartOrderLoading = useSelector(isLoadingSelector);
     const teamSize = useSelector(teamSizeSelector);
@@ -34,6 +37,7 @@ const CartSummary = () => {
     const isOutsideSignOutPeriod =
         currentDateTime < hardwareSignOutStartDate ||
         currentDateTime > hardwareSignOutEndDate;
+    const isTestUser = user?.groups.find((group) => group.name === hssTestUserGroup);
 
     return (
         <TitledPaper title="Cart Summary">
@@ -55,7 +59,7 @@ const CartSummary = () => {
                     cartQuantity === 0 ||
                     cartOrderLoading ||
                     !teamSizeValid ||
-                    isOutsideSignOutPeriod
+                    (!isTestUser && isOutsideSignOutPeriod)
                 }
                 onClick={onSubmit}
                 disableElevation
