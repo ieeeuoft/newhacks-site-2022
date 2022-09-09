@@ -54,7 +54,7 @@ export const mockHardwareSignOutDates = (
 };
 
 describe("<ProductOverview />", () => {
-    test("all 3 parts of the product overview is there", async () => {
+    test("all 3 parts of the product overview is there", () => {
         const store = makeStoreWithEntities({
             hardwareState: {
                 isUpdateDetailsLoading: false,
@@ -66,6 +66,7 @@ describe("<ProductOverview />", () => {
                 },
             },
             hardware: mockHardware,
+            categories: mockCategories,
         });
 
         const { getByText } = render(<ProductOverview showAddToCartButton />, {
@@ -127,6 +128,7 @@ describe("<ProductOverview />", () => {
                 },
             },
             hardware: mockHardware,
+            categories: mockCategories,
         });
 
         const { getByText, queryByText } = render(
