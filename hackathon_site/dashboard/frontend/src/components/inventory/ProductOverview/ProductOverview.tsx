@@ -217,13 +217,20 @@ const DetailInfoSection = ({
 }: DetailInfoSectionProps) => {
     return (
         <>
-            <Typography variant="body2" color="secondary" className={styles.heading}>
-                Constraints
-            </Typography>
-            {constraints?.length > 0 &&
-                constraints.map((constraint, i) => (
-                    <Typography key={i}>- {constraint}</Typography>
-                ))}
+            {constraints?.length > 0 && (
+                <>
+                    <Typography
+                        variant="body2"
+                        color="secondary"
+                        className={styles.heading}
+                    >
+                        Constraints
+                    </Typography>
+                    {constraints.map((constraint, i) => (
+                        <Typography key={i}>- {constraint}</Typography>
+                    ))}
+                </>
+            )}
             <Typography variant="body2" className={styles.heading}>
                 Manufacturer
             </Typography>
@@ -285,20 +292,23 @@ const MainSection = ({
             <div>
                 <Typography variant="h6">{name}</Typography>
                 {availability}
-                <Typography variant="body2" className={styles.heading}>
-                    Category
-                </Typography>
-                <div>
-                    {categories?.length > 0 &&
-                        categories.map((category, i) => (
-                            <Chip
-                                label={category}
-                                size="small"
-                                className={styles.categoryItem}
-                                key={i}
-                            />
-                        ))}
-                </div>
+                {categories?.length > 0 && (
+                    <>
+                        <Typography variant="body2" className={styles.heading}>
+                            Category
+                        </Typography>
+                        <div>
+                            {categories.map((category, i) => (
+                                <Chip
+                                    label={category}
+                                    size="small"
+                                    className={styles.categoryItem}
+                                    key={i}
+                                />
+                            ))}
+                        </div>
+                    </>
+                )}
             </div>
             <img src={picture} alt={name} />
         </div>
