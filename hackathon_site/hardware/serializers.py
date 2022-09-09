@@ -199,10 +199,16 @@ class OrderCreateSerializer(serializers.Serializer):
 
     # check that the requests are within per-team constraints
     def validate(self, data):
-        if not self.context["request"].user.groups.filter(name=settings.TEST_USER_GROUP).exists():
+        if (
+            not self.context["request"]
+            .user.groups.filter(name=settings.TEST_USER_GROUP)
+            .exists()
+        ):
             # time restrictions
             if datetime.now(settings.TZ_INFO) < settings.HARDWARE_SIGN_OUT_START_DATE:
-                raise serializers.ValidationError("Hardware sign out period has not begun")
+                raise serializers.ValidationError(
+                    "Hardware sign out period has not begun"
+                )
             if datetime.now(settings.TZ_INFO) > settings.HARDWARE_SIGN_OUT_END_DATE:
                 raise serializers.ValidationError("Hardware sign out period is over")
 
