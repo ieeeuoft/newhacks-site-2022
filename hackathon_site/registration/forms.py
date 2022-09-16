@@ -66,6 +66,38 @@ class SignUpForm(UserCreationForm):
     def clean_email(self):
         return self.cleaned_data["email"].lower()
 
+    def clean_first_name(self):
+        if not bool(re.search("^[a-zA-Z0-9]*$", self.cleaned_data["first_name"])):
+            raise forms.ValidationError(
+                _(
+                    f"This doesn't seem like a name, please enter a valid name (no special characters)"
+                ),
+                code="invalid_first_name",
+            )
+
+        if len(self.cleaned_data["first_name"]) > 30:
+            raise forms.ValidationError(
+                _(f"This input seems too long to be a name, please enter a valid name"),
+                code="first_name_too_long",
+            )
+        return self.cleaned_data["first_name"]
+
+    def clean_last_name(self):
+        if not bool(re.search("^[a-zA-Z0-9]*$", self.cleaned_data["last_name"])):
+            raise forms.ValidationError(
+                _(
+                    f"This doesn't seem like a name, please enter a valid name (no special characters)"
+                ),
+                code="invalid_last_name",
+            )
+
+        if len(self.cleaned_data["last_name"]) > 30:
+            raise forms.ValidationError(
+                _(f"This input seems too long to be a name, please enter a valid name"),
+                code="last_name_too_long",
+            )
+        return self.cleaned_data["last_name"]
+
     def save(self, commit=True):
         """
         Set the user's username to their email when saving
