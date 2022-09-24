@@ -44,7 +44,7 @@ class SetupUserMixin:
         return Profile.objects.create(user=user, team=team, **profile_data)
 
     @staticmethod
-    def _apply_as_user(user, team=None):
+    def _apply_as_user(user, team=None, **kwargs):
         if team is None:
             team = RegistrationTeam.objects.create()
 
@@ -67,6 +67,7 @@ class SetupUserMixin:
             "email_agree": True,
             "logistics_agree": True,
             "resume_sharing": True,
+            **kwargs,
         }
         return Application.objects.create(user=user, team=team, **application_data)
 
@@ -188,7 +189,7 @@ class SetupUserMixin:
         if user is None:
             user = self.user
 
-        return Profile.objects.create(user=user, team=team)
+        return Profile.objects.create(user=user, team=team, phone_number="1234567890")
 
 
 @override_settings(IN_TESTING=False)

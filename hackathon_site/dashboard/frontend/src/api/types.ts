@@ -46,13 +46,19 @@ export interface Category {
 }
 
 /** Event API */
-export interface Profile {
+export interface ProfileRequestBody {
+    acknowledge_rules: boolean;
+    e_signature: string | null;
+}
+
+export interface Profile extends ProfileRequestBody {
     id: number;
     id_provided: boolean;
     attended: boolean;
+    team: string;
     acknowledge_rules: boolean;
     e_signature: string | null;
-    team: number;
+    phone_number: string;
 }
 
 type ProfileWithoutTeamNumber = Omit<Profile, "team">;
@@ -62,19 +68,19 @@ export type Group = {
     name: string;
 };
 
-interface UserWithoutProfile {
+export interface UserWithoutProfile {
     id: number;
     first_name: string;
     last_name: string;
     email: string;
 }
 
+export interface UserWithReviewStatus extends UserWithoutProfile {
+    review_status: "Accepted" | "Waitlisted" | "Rejected" | "Incomplete" | "None";
+}
+
 export interface User extends UserWithoutProfile {
-    profile:
-        | (ProfileWithoutTeamNumber & {
-              user: UserWithoutProfile;
-          })
-        | null;
+    profile: ProfileWithUser | null;
     groups: Group[];
 }
 
@@ -83,9 +89,11 @@ export interface Team {
     team_code: string;
     created_at: string;
     updated_at: string;
-    profiles: (ProfileWithoutTeamNumber & {
-        user: UserWithoutProfile;
-    })[];
+    profiles: ProfileWithUser[];
+}
+
+export interface ProfileWithUser extends ProfileWithoutTeamNumber {
+    user: UserWithoutProfile;
 }
 
 /** Orders API */

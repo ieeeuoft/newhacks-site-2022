@@ -41,6 +41,7 @@ if DEBUG:
         r"^https?://localhost:?\d*$",
     ]
     EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+    HSS_URL = "http://localhost:3000/"
 else:
     ALLOWED_HOSTS = [
         "newhacks.ca",
@@ -48,6 +49,7 @@ else:
         "hardware.newhacks.ca",
         "www.hardware.newhacks.ca",
     ]
+    HSS_URL = "https://hardware.newhacks.ca/"
     CORS_ORIGIN_REGEX_WHITELIST = [
         r"^https://(?:www\.)?newhacks\.ca",
         r"^https://(?:www\.)?\w+\.newhacks\.ca",
