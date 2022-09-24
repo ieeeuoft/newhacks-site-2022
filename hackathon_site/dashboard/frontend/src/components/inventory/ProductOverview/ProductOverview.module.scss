@@ -8,10 +8,14 @@
 
 .productOverview {
     height: 100%;
-    width: 100%;
+    width: 500px;
     @include flexPosition($jusCon: space-between, $alIte: flex-start, $dir: column);
 
     &Div {
+        width: 100%;
+    }
+
+    @include responsive(sm-down) {
         width: 100%;
     }
 }

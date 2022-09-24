@@ -32,6 +32,7 @@ import { Category } from "api/types";
 import hardwareImagePlaceholder from "assets/images/placeholders/no-hardware-image.svg";
 import { hardwareSignOutEndDate, hardwareSignOutStartDate } from "constants.js";
 import { Tooltip } from "@material-ui/core";
+import { userTypeSelector } from "slices/users/userSlice";
 
 export const ERROR_MESSAGES = {
     quantityMissing: "Quantity is required",
