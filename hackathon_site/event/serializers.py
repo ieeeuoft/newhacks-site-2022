@@ -1,5 +1,6 @@
 from django.contrib.auth.models import Group
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
 from rest_framework import serializers
 
 from event.models import Profile, User, Team
@@ -96,27 +97,35 @@ class CurrentProfileSerializer(ProfileSerializer):
         if hasattr(current_user, "profile"):
             raise serializers.ValidationError("User already has profile")
 
-        try:
-            application = Application.objects.get(user=current_user)
-            # if not rsvp_status:
-            #     raise serializers.ValidationError(
-            #         "User has not RSVP'd to the hackathon. Please RSVP to access the Hardware Signout Site"
-            #     )
-        except Application.DoesNotExist:
-            raise serializers.ValidationError(
-                "User has not completed their application to the hackathon. Please do so to access the Hardware Signout Site"
-            )
-
-        try:
-            review_status = Review.objects.get(application__user=current_user).status
-            if review_status != "Accepted":
+        is_test_user = (
+            self.context["request"]
+            .user.groups.filter(name=settings.TEST_USER_GROUP)
+            .exists()
+        )
+        if not is_test_user:
+            try:
+                application = Application.objects.get(user=current_user)
+                # if not rsvp_status:
+                #     raise serializers.ValidationError(
+                #         "User has not RSVP'd to the hackathon. Please RSVP to access the Hardware Signout Site"
+                #     )
+            except Application.DoesNotExist:
                 raise serializers.ValidationError(
-                    "User has not been accepted to participate in hackathon"
+                    "User has not completed their application to the hackathon. Please do so to access the Hardware Signout Site"
                 )
-        except Review.DoesNotExist:
-            raise serializers.ValidationError(
-                "User has not been reviewed yet, Hardware Signout Site cannot be accessed until reviewed"
-            )
+
+            try:
+                review_status = Review.objects.get(
+                    application__user=current_user
+                ).status
+                if review_status != "Accepted":
+                    raise serializers.ValidationError(
+                        "User has not been accepted to participate in hackathon"
+                    )
+            except Review.DoesNotExist:
+                raise serializers.ValidationError(
+                    "User has not been reviewed yet, Hardware Signout Site cannot be accessed until reviewed"
+                )
 
         acknowledge_rules = validated_data.pop("acknowledge_rules", None)
         e_signature = validated_data.pop("e_signature", None)
@@ -131,7 +140,7 @@ class CurrentProfileSerializer(ProfileSerializer):
             "id_provided": False,
             "acknowledge_rules": acknowledge_rules,
             "e_signature": e_signature,
-            "phone_number": application.phone_number,
+            "phone_number": "6471437544" if is_test_user else application.phone_number,
         }
 
         profile = Profile.objects.create(**{**response_data, "user": current_user})

@@ -25,10 +25,12 @@ import {
     UserHasBeenGrantedAccessMessage,
 } from "components/acknowledgement/UserAcceptanceStatus/UserAcceptanceStatus";
 import AlertBox from "components/general/AlertBox/AlertBox";
+import { hssTestUserGroup } from "constants.js";
 
 const Acknowledgement = () => {
     const dispatch = useDispatch();
     const userType = useSelector(userTypeSelector);
+    const user = useSelector(userSelector);
     const {
         error: getAcceptanceError,
         isLoading,
@@ -41,6 +43,8 @@ const Acknowledgement = () => {
     } = useSelector(createProfileSelector);
     const userDoesNotHaveRole = userType === "none";
     const [showAcknowledgements, setShowAcknowledgements] = useState(false);
+
+    const isTestUser = user?.groups.find((group) => group.name === hssTestUserGroup);
 
     useEffect(() => {
         if (userDoesNotHaveRole) {
@@ -64,8 +68,10 @@ const Acknowledgement = () => {
                     ) : !showAcknowledgements ? (
                         <UserAcceptanceMessage
                             status={
-                                acceptanceUser?.review_status === "None" ||
-                                !acceptanceUser?.review_status
+                                isTestUser
+                                    ? "Accepted"
+                                    : acceptanceUser?.review_status === "None" ||
+                                      !acceptanceUser?.review_status
                                     ? "Incomplete"
                                     : acceptanceUser?.review_status
                             }
