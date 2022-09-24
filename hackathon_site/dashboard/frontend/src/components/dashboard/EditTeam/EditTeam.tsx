@@ -91,9 +91,9 @@ const TeamChangeForm = ({ canChangeTeam, teamCode }: TeamModalProps) => {
                                             ? true
                                             : isJoinTeamLoading
                                             ? true
-                                            : values.teamCode == ""
+                                            : values.teamCode === ""
                                             ? true
-                                            : values.teamCode == teamCode
+                                            : values.teamCode === teamCode
                                     }
                                     type="submit"
                                 >
