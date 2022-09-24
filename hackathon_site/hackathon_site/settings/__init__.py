@@ -41,6 +41,7 @@ if DEBUG:
         r"^https?://localhost:?\d*$",
     ]
     EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+    HSS_URL = "http://localhost:3000/"
 else:
     ALLOWED_HOSTS = [
         "newhacks.ca",
@@ -48,6 +49,7 @@ else:
         "hardware.newhacks.ca",
         "www.hardware.newhacks.ca",
     ]
+    HSS_URL = "https://hardware.newhacks.ca/"
     CORS_ORIGIN_REGEX_WHITELIST = [
         r"^https://(?:www\.)?newhacks\.ca",
         r"^https://(?:www\.)?\w+\.newhacks\.ca",
@@ -341,3 +343,5 @@ PARTICIPANT_PACKAGE_LINK = "#"
 # Note this is in the form (chat_room_name, chat_room_link)
 # Chat room name is such as the following: Slack, Discord
 CHAT_ROOM = ("Discord", "https://discord.com")
+
+HSS_ADMIN_EMAIL = "hardware@newhacks.ca"

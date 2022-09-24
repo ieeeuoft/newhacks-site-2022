@@ -3,6 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import serializers
 
 from event.models import Profile, User, Team
+from registration.models import Application
 from review.models import Review
 
 
@@ -24,12 +25,12 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "id_provided",
+            "phone_number",
             "attended",
             "acknowledge_rules",
             "e_signature",
             "team",
         )
-        read_only_fields = ("id", "team", "acknowledge_rules", "e_signature")
 
 
 class ProfileInUserSerializer(serializers.ModelSerializer):
@@ -43,6 +44,7 @@ class ProfileInUserSerializer(serializers.ModelSerializer):
             "attended",
             "acknowledge_rules",
             "e_signature",
+            "phone_number",
             "user",
         )
 
@@ -58,6 +60,7 @@ class ProfileInTeamSerializer(serializers.ModelSerializer):
             "attended",
             "acknowledge_rules",
             "e_signature",
+            "phone_number",
             "user",
         )
 
@@ -72,6 +75,7 @@ class CurrentProfileSerializer(ProfileSerializer):
             "team",
             "id_provided",
             "attended",
+            "phone_number",
         )
 
     def update(self, instance: Profile, validated_data):
@@ -86,6 +90,52 @@ class CurrentProfileSerializer(ProfileSerializer):
         # This uses the original model serializer update function because calling super().update() will call
         # ProfileSerializer update function and we want to keep the logic between these two update functions separate.
         return serializers.ModelSerializer.update(self, instance, validated_data)
+
+    def create(self, validated_data):
+        current_user = self.context["request"].user
+        if hasattr(current_user, "profile"):
+            raise serializers.ValidationError("User already has profile")
+
+        try:
+            application = Application.objects.get(user=current_user)
+            # if not rsvp_status:
+            #     raise serializers.ValidationError(
+            #         "User has not RSVP'd to the hackathon. Please RSVP to access the Hardware Signout Site"
+            #     )
+        except Application.DoesNotExist:
+            raise serializers.ValidationError(
+                "User has not completed their application to the hackathon. Please do so to access the Hardware Signout Site"
+            )
+
+        try:
+            review_status = Review.objects.get(application__user=current_user).status
+            if review_status != "Accepted":
+                raise serializers.ValidationError(
+                    "User has not been accepted to participate in hackathon"
+                )
+        except Review.DoesNotExist:
+            raise serializers.ValidationError(
+                "User has not been reviewed yet, Hardware Signout Site cannot be accessed until reviewed"
+            )
+
+        acknowledge_rules = validated_data.pop("acknowledge_rules", None)
+        e_signature = validated_data.pop("e_signature", None)
+
+        if not acknowledge_rules or not e_signature:
+            raise serializers.ValidationError(
+                "User must acknowledge rules and provide an e_signature"
+            )
+
+        response_data = {
+            "attended": True,
+            "id_provided": False,
+            "acknowledge_rules": acknowledge_rules,
+            "e_signature": e_signature,
+            "phone_number": application.phone_number,
+        }
+
+        profile = Profile.objects.create(**{**response_data, "user": current_user})
+        return {**response_data, "team": profile.team.team_code}
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -109,6 +159,10 @@ class TeamSerializer(serializers.ModelSerializer):
             "updated_at",
             "profiles",
         )
+
+
+class ProfileCreateResponseSerializer(ProfileSerializer):
+    team = serializers.CharField(required=True)
 
 
 class UserReviewStatusSerializer(serializers.ModelSerializer):
