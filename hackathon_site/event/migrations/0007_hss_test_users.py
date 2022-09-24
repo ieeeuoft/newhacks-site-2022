@@ -21,7 +21,4 @@ def revert_migration(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-    dependencies = [
-        ("event", "0004_hardware_site_admins"),
-    ]
     operations = [migrations.RunPython(apply_migration, revert_migration)]
