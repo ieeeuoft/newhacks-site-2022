@@ -107,7 +107,7 @@ class ApplicationInline(admin.TabularInline):
     max_num = 0
     exclude = (
         "user",
-        "gender",
+        "pronouns",
         "ethnicity",
         "phone_number",
         "resume",
