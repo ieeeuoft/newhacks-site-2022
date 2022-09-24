@@ -316,7 +316,7 @@ REGISTRATION_OPEN_DATE = datetime(2022, 9, 5, 0, 0, 0, tzinfo=TZ_INFO)
 REGISTRATION_CLOSE_DATE = datetime(2022, 10, 20, 11, 59, 0, tzinfo=TZ_INFO)
 EVENT_START_DATE = datetime(2022, 11, 5, 9, 0, 0, tzinfo=TZ_INFO)
 EVENT_END_DATE = datetime(2022, 11, 6, 17, 0, 0, tzinfo=TZ_INFO)
-HARDWARE_SIGN_OUT_START_DATE = datetime(2022, 9, 20, 11, 59, 0, tzinfo=TZ_INFO)
+HARDWARE_SIGN_OUT_START_DATE = datetime(2022, 10, 20, 11, 59, 0, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_END_DATE = EVENT_END_DATE
 
 # Registration user requirements
