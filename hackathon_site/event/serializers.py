@@ -97,7 +97,11 @@ class CurrentProfileSerializer(ProfileSerializer):
         if hasattr(current_user, "profile"):
             raise serializers.ValidationError("User already has profile")
 
-        is_test_user = self.context["request"].user.groups.filter(name=settings.TEST_USER_GROUP).exists()
+        is_test_user = (
+            self.context["request"]
+            .user.groups.filter(name=settings.TEST_USER_GROUP)
+            .exists()
+        )
         if not is_test_user:
             try:
                 application = Application.objects.get(user=current_user)
@@ -111,7 +115,9 @@ class CurrentProfileSerializer(ProfileSerializer):
                 )
 
             try:
-                review_status = Review.objects.get(application__user=current_user).status
+                review_status = Review.objects.get(
+                    application__user=current_user
+                ).status
                 if review_status != "Accepted":
                     raise serializers.ValidationError(
                         "User has not been accepted to participate in hackathon"
