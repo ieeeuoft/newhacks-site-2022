@@ -339,15 +339,17 @@ export const ProductOverview = ({
     const categories = useSelector((state: RootState) =>
         selectCategoriesByIds(state, hardware?.categories || [])
     );
+
+    maxPerTeam = hardware?.max_per_team ?? null;
+    constraints =
+        hardware?.max_per_team !== undefined
+            ? [`Max ${hardware.max_per_team} of this item`]
+            : [];
+
     if (categories.length > 0) {
         categoryNames = categories
             .filter((category): category is Category => !!category)
             .map((category) => category.name);
-        constraints =
-            hardware?.max_per_team !== undefined
-                ? [`Max ${hardware.max_per_team} of this item`]
-                : [];
-        maxPerTeam = hardware?.max_per_team ?? null;
         for (const category of categories) {
             if (category?.max_per_team !== undefined) {
                 constraints.push(

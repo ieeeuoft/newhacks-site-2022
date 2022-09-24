@@ -63,7 +63,7 @@ const Dashboard = () => {
     return (
         <>
             <Header />
-            <ProductOverview showAddToCartButton />
+            <ProductOverview showAddToCartButton={false} />
             <EditTeam
                 teamCode={team_code == null ? "None" : team_code}
                 canChangeTeam={true}
