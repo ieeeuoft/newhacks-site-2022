@@ -344,4 +344,6 @@ PARTICIPANT_PACKAGE_LINK = "#"
 # Chat room name is such as the following: Slack, Discord
 CHAT_ROOM = ("Discord", "https://discord.com")
 
+# HSS Testing
+TEST_USER_GROUP = "HSS Test Users"
 HSS_ADMIN_EMAIL = "hardware@newhacks.ca"
