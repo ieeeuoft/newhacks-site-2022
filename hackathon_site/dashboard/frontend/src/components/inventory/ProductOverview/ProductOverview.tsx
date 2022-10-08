@@ -36,7 +36,7 @@ import {
     hssTestUserGroup,
 } from "constants.js";
 import { Tooltip } from "@material-ui/core";
-import { userSelector } from "slices/users/userSlice";
+import { userSelector, userTypeSelector } from "slices/users/userSlice";
 
 export const ERROR_MESSAGES = {
     quantityMissing: "Quantity is required",
@@ -278,9 +278,14 @@ const MainSection = ({
     categories,
     picture,
 }: MainSectionProps) => {
+    const userType = useSelector(userTypeSelector);
     const availability =
         quantityRemaining === 0 ? (
             <Typography color="secondary">OUT OF STOCK</Typography>
+        ) : userType === "participant" ? (
+            <Typography className={styles.quantityAvailable}>
+                {quantityRemaining} IN STOCK
+            </Typography>
         ) : (
             <Typography className={styles.quantityAvailable}>
                 {quantityRemaining} OF {quantityAvailable} IN STOCK
