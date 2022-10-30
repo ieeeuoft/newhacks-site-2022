@@ -36,7 +36,7 @@
                 </h4>
             </div>
             <div class="row">
-                <h5 class="white-text">University of Toronto</h5>
+                <h5 class="white-text">University of Toronto, Bahen Centre for Information Technology</h5>
                 <h5 class="white-text">
                     {# Update this logic if your event ends in a different month or year #}
                     {{ localtime(event_start_date).strftime("%B %-d") }}-{{ localtime(event_end_date).strftime("%-d, %Y") }}
@@ -64,7 +64,7 @@
                     <h3 class="center white-text">About us</h3>
 
                     <p class="center white-text">
-                        Join 300 hackers at NewHacks to transform your ideas into reality! In this 24-hour event, you and your team will build a project from scratch through the integration of hardware and software. Afterwards, you will present your project to a panel of industry judges to compete for prizes.
+                        Join 300 hackers at NewHacks to transform your ideas into reality! In this 24-hour event, you and your team will build a project from scratch through the integration of hardware and software. Afterwards, you will present your project to a panel of industry judges to compete for prizes. This year's themes are Education, Life Convenience and Location/Maps!
                     </p>
                     <p class="center white-text">
                         Our hackathon is designed for anyone to participate, regardless of whether or not you have a technical background. To help facilitate your learning experience, we will host workshops throughout the event featuring speakers from some of the top companies in the industry. This hackathon will be in-person at the University of Toronto where we will provide various hardware, tools and equipment for you and your team to use!
@@ -87,7 +87,7 @@
                             <p id="day3"></p>
                         </div>
                     </div>
-                    <div class="col white-text center countdownDays">Days</div>
+                    <div class="col white-text center countdownDays" id="countdownUnit">Days</div>
                 </div>
             </div>
         </div>
@@ -199,6 +199,14 @@
                         </li>
                         <li>
                             <div class="collapsible-header">
+                                Where is NewHacks taking place?
+                            </div>
+                            <div class="collapsible-body">
+                                <span> NewHacks is taking place at UofT in the <a href="https://goo.gl/maps/4whMmQCXXhdS1vzu9">Bahen Centre for Information Technology</a>. As a hacker, please be sure to sign-in in the atrium (located at the front doors facing St.George St.) of Bahen Centre. </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header">
                                 Who can join?
                             </div>
                             <div class="collapsible-body">
@@ -241,7 +249,7 @@
                             </div>
                             <div class="collapsible-body">
                                 <span>
-                                    NewHacks is an event for new and inexperienced hackers that has no entry fee. It is your choice If you would like to buy and bring your own hardware and equipment to the event. For those who do not already have there own hardware and equipment and do not want to buy it, equipment will be available at ther event for borrowing, however must be returned at the end of NewHacks. 
+                                    NewHacks is an event for new and inexperienced hackers that has no entry fee. It is your choice If you would like to buy and bring your own hardware and equipment to the event. For those who do not already have there own hardware and equipment and do not want to buy it, equipment will be available at the event for borrowing, however must be returned at the end of NewHacks. 
                                 </span>
                             </div>
                         </li>
@@ -266,7 +274,7 @@
                             </div>
                             <div class="collapsible-body">
                                 <span>
-                                    Applications open on {{ localtime(registration_open_date).strftime('%B %-dst') }} and close on {{ localtime(registration_close_date).strftime('%B %dth at %H:%M, %Y') }}. Acceptances will be internally decided on a rolling basis, so apply early to maximize your chances of getting accepted!
+                                    Applications open on {{ localtime(registration_open_date).strftime('%B %-dth') }} and close on {{ localtime(registration_close_date).strftime('%B %dth at %H:%M, %Y') }}. Acceptances will be internally decided on a rolling basis, so apply early to maximize your chances of getting accepted!
                                 </span>
                             </div>
                         </li>
