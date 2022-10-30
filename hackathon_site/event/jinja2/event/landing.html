@@ -36,7 +36,7 @@
                 </h4>
             </div>
             <div class="row">
-                <h5 class="white-text">University of Toronto</h5>
+                <h5 class="white-text">University of Toronto, Bahen Centre for Information Technology</h5>
                 <h5 class="white-text">
                     {# Update this logic if your event ends in a different month or year #}
                     {{ localtime(event_start_date).strftime("%B %-d") }}-{{ localtime(event_end_date).strftime("%-d, %Y") }}
@@ -198,6 +198,15 @@
                             </div>
                         </li>
                         <li>
+                        <li>
+                            <div class="collapsible-header">
+                                Where is NewHacks taking place?
+                            </div>
+                            <div class="collapsible-body">
+                                <span> NewHacks is taking place at UofT in the <a href="https://goo.gl/maps/4whMmQCXXhdS1vzu9">Bahen Centre for Information Technology</a>. As a hacker, please be sure to sign-in in the atrium (located at the front doors facing St.George St.) of Bahen Centre. </span>
+                            </div>
+                        </li>
+                        <li>
                             <div class="collapsible-header">
                                 Who can join?
                             </div>
@@ -266,7 +275,7 @@
                             </div>
                             <div class="collapsible-body">
                                 <span>
-                                    Applications open on {{ localtime(registration_open_date).strftime('%B %-dst') }} and close on {{ localtime(registration_close_date).strftime('%B %dth at %H:%M, %Y') }}. Acceptances will be internally decided on a rolling basis, so apply early to maximize your chances of getting accepted!
+                                    Applications open on {{ localtime(registration_open_date).strftime('%B %-dth') }} and close on {{ localtime(registration_close_date).strftime('%B %dth at %H:%M, %Y') }}. Acceptances will be internally decided on a rolling basis, so apply early to maximize your chances of getting accepted!
                                 </span>
                             </div>
                         </li>
