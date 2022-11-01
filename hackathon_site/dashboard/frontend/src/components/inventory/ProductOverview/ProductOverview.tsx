@@ -341,10 +341,9 @@ export const ProductOverview = ({
     );
 
     maxPerTeam = hardware?.max_per_team ?? null;
-    constraints =
-        hardware?.max_per_team !== undefined
-            ? [`Max ${hardware.max_per_team} of this item`]
-            : [];
+    constraints = !!hardware?.max_per_team
+        ? [`Max ${hardware.max_per_team} of this item`]
+        : [];
 
     if (categories.length > 0) {
         categoryNames = categories
