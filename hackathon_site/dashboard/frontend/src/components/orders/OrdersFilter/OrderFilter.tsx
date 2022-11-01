@@ -10,11 +10,11 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { OrderOrdering, OrderStatus, OrderFilters, Order } from "api/types";
+import { OrderOrdering, OrderStatus, OrderFilters } from "api/types";
 import styles from "components/sharedStyles/Filter.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    adminOrderSelectors,
+    adminOrderNumStatusesSelector,
     clearFilters,
     getOrdersWithFilters,
     setFilters,
@@ -53,57 +53,51 @@ const RadioOrderBy = ({ field, options }: FieldProps & { options: OrderByOptions
     </RadioGroup>
 );
 
-const CheckboxCategory = ({
-    field,
-    options,
-}: FieldProps & { options: StatusCategories }) => (
-    <FormGroup {...field}>
-        {options.map((item, i) => (
-            <div className={styles.filterCategory} key={i}>
-                <FormControlLabel
-                    name={field.name}
-                    value={item.status}
-                    control={<Checkbox color="primary" />}
-                    label={item.status}
-                    checked={field.value ? field.value.includes(item.status) : false}
-                />
-                <Chip
-                    size="small"
-                    label={item.numOrders}
-                    className={styles.filterCategoryChip}
-                />
-            </div>
-        ))}
-    </FormGroup>
-);
-
 const OrderFilter = ({ handleReset, handleSubmit }: FormikValues) => {
-    const allOrders = useSelector(adminOrderSelectors.selectAll);
+    const CheckboxCategory = ({
+        field,
+        options,
+    }: FieldProps & { options: StatusCategories }) => (
+        <FormGroup {...field}>
+            {options.map((item, i) => (
+                <div className={styles.filterCategory} key={i}>
+                    <FormControlLabel
+                        name={field.name}
+                        value={item.status}
+                        control={<Checkbox color="primary" />}
+                        label={item.status}
+                        checked={
+                            field.value ? field.value.includes(item.status) : false
+                        }
+                    />
+                    <Chip
+                        size="small"
+                        label={item.numOrders}
+                        className={styles.filterCategoryChip}
+                    />
+                </div>
+            ))}
+        </FormGroup>
+    );
 
-    function numOrdersByStatus(status: OrderStatus, orders: Order[]) {
-        let count = 0;
-        allOrders.forEach((order) => {
-            if (order.status === status) count++;
-        });
-        return count;
-    }
+    const numStatuses = useSelector(adminOrderNumStatusesSelector);
 
     const statusCategories = [
         {
             status: "Submitted",
-            numOrders: numOrdersByStatus("Submitted", allOrders),
+            numOrders: numStatuses["Submitted"],
         },
         {
             status: "Ready for Pickup",
-            numOrders: numOrdersByStatus("Ready for Pickup", allOrders),
+            numOrders: numStatuses["Ready for Pickup"],
         },
         {
             status: "Picked Up",
-            numOrders: numOrdersByStatus("Picked Up", allOrders),
+            numOrders: numStatuses["Picked Up"],
         },
         {
             status: "Cancelled",
-            numOrders: numOrdersByStatus("Cancelled", allOrders),
+            numOrders: numStatuses["Cancelled"],
         },
     ];
 
