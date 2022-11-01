@@ -95,16 +95,13 @@ const Orders = () => {
                                         key={idx}
                                         onClick={() => handleClick(order.id)}
                                     >
-                                        {(order.status === "Submitted" ||
-                                            order.status === "Ready for Pickup") && (
-                                            <OrderCard
-                                                teamCode={order.team_code}
-                                                orderQuantity={order.items.length}
-                                                time={order.created_at}
-                                                id={order.id}
-                                                status={order.status}
-                                            />
-                                        )}
+                                        <OrderCard
+                                            teamCode={order.team_code}
+                                            orderQuantity={order.items.length}
+                                            time={order.created_at}
+                                            id={order.id}
+                                            status={order.status}
+                                        />
                                     </Grid>
                                 ))}
                             </Grid>

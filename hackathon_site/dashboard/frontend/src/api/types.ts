@@ -1,3 +1,5 @@
+import { OrderByOptions } from "../components/orders/OrdersFilter/OrderFilter";
+
 /** Generics */
 export interface APIListResponse<T> {
     count: number;
@@ -114,6 +116,13 @@ export interface Order {
     }[];
     created_at: string;
     updated_at: string;
+}
+
+export type OrderOrdering = "" | "created_at" | "-created_at" | "orderQuantity";
+
+export interface OrderFilters {
+    ordering?: OrderOrdering;
+    status?: OrderStatus[];
 }
 
 /** Sanitized Orders */

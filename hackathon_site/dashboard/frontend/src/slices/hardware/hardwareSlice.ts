@@ -52,6 +52,7 @@ export const getHardwareWithFilters = createAsyncThunk<
     `${hardwareReducerName}/getHardwareWithFilters`,
     async (_, { dispatch, getState, rejectWithValue }) => {
         const filters = hardwareFiltersSelector(getState());
+        console.log(filters);
 
         try {
             const response = await get<APIListResponse<Hardware>>(

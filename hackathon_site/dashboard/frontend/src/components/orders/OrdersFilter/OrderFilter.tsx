@@ -10,14 +10,18 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { OrderStatus } from "api/types";
-import { status } from "testing/mockData";
+import { OrderOrdering, OrderStatus, OrderFilters, Order } from "api/types";
 import styles from "components/sharedStyles/Filter.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    adminOrderSelectors,
+    clearFilters,
+    getOrdersWithFilters,
+    setFilters,
+} from "slices/order/adminOrderSlice";
 
-type OrdersOrdering = "" | "timeOrderedASC" | "timeOrderedDESC" | "orderQuantity";
-
-type OrderByOptions = {
-    value: OrdersOrdering;
+export type OrderByOptions = {
+    value: OrderOrdering;
     label: string;
 }[];
 
@@ -28,15 +32,10 @@ type StatusCategories = [
     }
 ];
 
-interface OrdersFilterValues {
-    ordering: OrdersOrdering;
-    status: OrderByOptions;
-}
-
 const orderByOptions: OrderByOptions = [
     { value: "", label: "Default" },
-    { value: "timeOrderedASC", label: "Time Ordered (ASC)" },
-    { value: "timeOrderedDESC", label: "Time Ordered (DESC)" },
+    { value: "created_at", label: "Time Ordered (ASC)" },
+    { value: "-created_at", label: "Time Ordered (DESC)" },
     { value: "orderQuantity", label: "Order Quantity" },
 ];
 
@@ -80,6 +79,35 @@ const CheckboxCategory = ({
 );
 
 const OrderFilter = ({ handleReset, handleSubmit }: FormikValues) => {
+    const allOrders = useSelector(adminOrderSelectors.selectAll);
+
+    function numOrdersByStatus(status: OrderStatus, orders: Order[]) {
+        let count = 0;
+        allOrders.forEach((order) => {
+            if (order.status === status) count++;
+        });
+        return count;
+    }
+
+    const statusCategories = [
+        {
+            status: "Submitted",
+            numOrders: numOrdersByStatus("Submitted", allOrders),
+        },
+        {
+            status: "Ready for Pickup",
+            numOrders: numOrdersByStatus("Ready for Pickup", allOrders),
+        },
+        {
+            status: "Picked Up",
+            numOrders: numOrdersByStatus("Picked Up", allOrders),
+        },
+        {
+            status: "Cancelled",
+            numOrders: numOrdersByStatus("Cancelled", allOrders),
+        },
+    ];
+
     return (
         <div className={styles.filter}>
             <Paper elevation={2} className={styles.filterPaper} square={true}>
@@ -105,7 +133,7 @@ const OrderFilter = ({ handleReset, handleSubmit }: FormikValues) => {
                         <Field
                             name="status"
                             component={CheckboxCategory}
-                            options={status}
+                            options={statusCategories}
                         />
                     </fieldset>
                 </form>
@@ -137,16 +165,20 @@ const OrderFilter = ({ handleReset, handleSubmit }: FormikValues) => {
 };
 
 export const EnhancedOrderFilter = () => {
-    const handleSubmit = ({ ordering, status }: OrdersFilterValues) => {
-        // TODO
-        alert("The apply button has been clicked.");
+    const dispatch = useDispatch();
 
-        console.log("ordering: ", ordering);
-        console.log("statuses: ", status);
+    const handleSubmit = ({ ordering, status }: OrderFilters) => {
+        const filters: OrderFilters = {
+            ordering,
+            status,
+        };
+        dispatch(setFilters(filters));
+        dispatch(getOrdersWithFilters());
     };
 
     const handleReset = () => {
-        // TODO
+        dispatch(clearFilters());
+        dispatch(getOrdersWithFilters());
     };
 
     return (
