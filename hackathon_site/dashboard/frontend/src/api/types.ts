@@ -1,5 +1,3 @@
-import { OrderByOptions } from "../components/orders/OrdersFilter/OrderFilter";
-
 /** Generics */
 export interface APIListResponse<T> {
     count: number;
@@ -117,8 +115,8 @@ export interface Order {
     created_at: string;
     updated_at: string;
 }
-// TODO: orderQuantity isn't a field, doesn't work
-export type OrderOrdering = "" | "created_at" | "-created_at" | "orderQuantity";
+
+export type OrderOrdering = "" | "created_at" | "-created_at";
 
 export interface OrderFilters {
     ordering?: OrderOrdering;

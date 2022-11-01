@@ -107,9 +107,7 @@ const adminOrderSlice = createSlice({
         builder.addCase(getOrdersWithFilters.fulfilled, (state, { payload }) => {
             state.isLoading = false;
             state.error = null;
-            // const { pendingOrders, checkedOutOrders } = teamOrderListSerialization(
-            //     payload.results
-            // );
+
             function numOrdersByStatus(status: OrderStatus, orders: Order[]) {
                 let count = 0;
                 orders.forEach((order) => {
@@ -136,7 +134,6 @@ const adminOrderSlice = createSlice({
                     "Cancelled",
                     payload.results
                 );
-                console.log("reset statuses");
             }
             adminOrderAdapter.setAll(state, payload.results);
         });
