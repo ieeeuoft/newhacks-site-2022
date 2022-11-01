@@ -36,7 +36,6 @@ const orderByOptions: OrderByOptions = [
     { value: "", label: "Default" },
     { value: "created_at", label: "Time Ordered (ASC)" },
     { value: "-created_at", label: "Time Ordered (DESC)" },
-    { value: "orderQuantity", label: "Order Quantity" },
 ];
 
 const RadioOrderBy = ({ field, options }: FieldProps & { options: OrderByOptions }) => (

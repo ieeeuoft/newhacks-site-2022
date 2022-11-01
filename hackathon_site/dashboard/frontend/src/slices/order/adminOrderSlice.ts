@@ -5,7 +5,7 @@ import {
     createSlice,
     PayloadAction,
 } from "@reduxjs/toolkit";
-import { APIListResponse, HardwareFilters, Order, OrderFilters } from "api/types";
+import { APIListResponse, Order, OrderFilters } from "api/types";
 import { AppDispatch, RootState } from "slices/store";
 import { get } from "api/api";
 import { displaySnackbar } from "slices/ui/uiSlice";
@@ -46,7 +46,6 @@ export const getOrdersWithFilters = createAsyncThunk<
                 "/api/hardware/orders/",
                 filters
             );
-            console.log(response.data);
             return response.data;
         } catch (e: any) {
             dispatch(
@@ -105,7 +104,7 @@ const adminOrderSlice = createSlice({
         builder.addCase(getOrdersWithFilters.rejected, (state, { payload }) => {
             state.isLoading = false;
             state.error =
-                payload?.message ?? "There was a problem in retrieving all the orders";
+                payload?.message ?? "There was a problem retrieving the orders";
         });
     },
 });

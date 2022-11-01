@@ -117,7 +117,7 @@ export interface Order {
     created_at: string;
     updated_at: string;
 }
-
+// TODO: orderQuantity isn't a field, doesn't work
 export type OrderOrdering = "" | "created_at" | "-created_at" | "orderQuantity";
 
 export interface OrderFilters {
