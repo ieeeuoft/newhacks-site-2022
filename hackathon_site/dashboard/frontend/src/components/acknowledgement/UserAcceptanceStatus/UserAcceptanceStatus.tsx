@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { Box, Button, Divider, Grid, Link, Typography } from "@material-ui/core";
 import AlertBox from "components/general/AlertBox/AlertBox";
-import { hackathonName } from "constants.js";
+import { hackathonName, server_url } from "constants.js";
 
 export const UserAcceptanceMessage = ({
     status,
@@ -50,9 +50,7 @@ export const UserAcceptanceMessage = ({
             actionMessage: (
                 <Typography variant="h2" align="center">
                     Keep an eye out for your application status changes on your{" "}
-                    <Link href={`${process.env.REACT_APP_DEV_SERVER_URL}/dashboard/`}>
-                        Dashboard
-                    </Link>
+                    <Link href={`${server_url}/dashboard/`}>Dashboard</Link>
                 </Typography>
             ),
         },
@@ -63,9 +61,7 @@ export const UserAcceptanceMessage = ({
                 <Typography variant="h2" align="center">
                     We still encourage you to apply for {hackathonName} next year! Keep
                     an eye out for your application status changes on your{" "}
-                    <Link href={`${process.env.REACT_APP_DEV_SERVER_URL}/dashboard/`}>
-                        Dashboard
-                    </Link>
+                    <Link href={`${server_url}/dashboard/`}>Dashboard</Link>
                 </Typography>
             ),
         },
@@ -75,16 +71,9 @@ export const UserAcceptanceMessage = ({
             actionMessage: (
                 <Typography variant="h2" align="center">
                     Please finish your application{" "}
-                    <Link
-                        href={`${process.env.REACT_APP_DEV_SERVER_URL}/registration/application/`}
-                    >
-                        here
-                    </Link>{" "}
+                    <Link href={`${server_url}/registration/application/`}>here</Link>{" "}
                     and view your application status{" "}
-                    <Link href={`${process.env.REACT_APP_DEV_SERVER_URL}/dashboard/`}>
-                        here
-                    </Link>
-                    .
+                    <Link href={`${server_url}/dashboard/`}>here</Link>.
                 </Typography>
             ),
         },
