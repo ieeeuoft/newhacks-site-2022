@@ -30,8 +30,8 @@ export const cardItems = [
                 icon: <OpenInNew />,
             },
             {
-                name: "Hardware Signout Site",
-                url: "https://hardware.newhacks.ca",
+                name: "NewHacks Devpost",
+                url: "https://newhacks-2022.devpost.com/?ref_feature=challenge&ref_medium=discover",
                 icon: <OpenInNew />,
             },
         ],
@@ -70,11 +70,15 @@ export const cardItems = [
         title: "Stores nearby",
         content: [
             {
-                name: "Creatron Inc",
-                url: "https://www.creatroninc.com/",
+                name: "Canada Computers",
+                url: "https://www.canadacomputers.com/",
                 icon: <PinDrop />,
             },
-            { name: "X2 Robotics", url: "https://x2robotics.ca/", icon: <PinDrop /> },
+            {
+                name: "Home Hardware",
+                url: "https://www.homehardware.ca/en/store/16093",
+                icon: <PinDrop />,
+            },
         ],
     },
 ];
