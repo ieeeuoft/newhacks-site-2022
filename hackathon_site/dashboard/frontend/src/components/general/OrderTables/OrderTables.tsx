@@ -204,7 +204,7 @@ export const GeneralReturnTable = ({
         >
             <GeneralOrderTitle
                 {...{
-                    title: "Returned items",
+                    title: "💻 Returned items",
                     isVisible,
                     toggleVisibility,
                 }}

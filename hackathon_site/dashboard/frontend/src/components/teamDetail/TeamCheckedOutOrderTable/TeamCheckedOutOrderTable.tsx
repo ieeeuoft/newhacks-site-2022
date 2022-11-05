@@ -107,7 +107,7 @@ export const TeamCheckedOutOrderTable = () => {
             disableGutters={true}
         >
             <GeneralOrderTitle
-                title="Checked Out Items"
+                title="✅Checked Out Items"
                 isVisible={visibility}
                 toggleVisibility={toggleVisibility}
             />

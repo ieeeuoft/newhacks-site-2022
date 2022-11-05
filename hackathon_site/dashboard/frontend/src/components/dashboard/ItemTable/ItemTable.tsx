@@ -67,7 +67,7 @@ export const CheckedOutTables = () =>
             >
                 <GeneralOrderTitle
                     {...{
-                        title: "Checked out items",
+                        title: "✅ Checked out items",
                         isVisible,
                         toggleVisibility,
                     }}
@@ -233,7 +233,7 @@ export const PendingTables = () => {
             {orders.length > 0 && (
                 <GeneralOrderTitle
                     {...{
-                        title: "Pending Orders",
+                        title: "🕘 Pending Orders",
                         isVisible,
                         toggleVisibility,
                     }}
