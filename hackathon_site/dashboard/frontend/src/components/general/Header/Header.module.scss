@@ -28,7 +28,7 @@
             }
         }
         &Title {
-            margin: 2px 0 0 -50px;
+            margin: 5px 0 0 -60px;
 
             @include responsive(sm-down) {
                 margin-left: -65px;
