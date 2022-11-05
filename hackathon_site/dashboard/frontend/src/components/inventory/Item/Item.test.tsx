@@ -3,8 +3,8 @@ import Item from "components/inventory/Item/Item";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { Provider } from "react-redux";
-import { userReducerName } from "../../../slices/users/userSlice";
-import { mockAdminUser, mockUser } from "../../../testing/mockData";
+import { userReducerName } from "slices/users/userSlice";
+import { mockAdminUser, mockUser } from "testing/mockData";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
@@ -17,20 +17,17 @@ describe("InventoryItem", () => {
     const mockStore = configureStore([thunk]);
 
     test("Has stock, admin side", () => {
-        const mockState = {
+        const mockAdminState = {
             [userReducerName]: {
                 userData: {
                     user: mockAdminUser,
                 },
             },
         };
-
-        const store = mockStore(mockState);
+        const store = mockStore(mockAdminState);
 
         const { getByText, getByAltText } = render(
             <Provider store={store}>
-                {" "}
-                // Set context
                 <Item
                     image={image}
                     title={title}
@@ -46,8 +43,7 @@ describe("InventoryItem", () => {
     });
 
     test("Has stock, participant side", () => {
-        // participant user
-        const mockState = {
+        const mockParticipantState = {
             [userReducerName]: {
                 userData: {
                     user: mockUser,
@@ -55,12 +51,10 @@ describe("InventoryItem", () => {
             },
         };
 
-        const store = mockStore(mockState);
+        const store = mockStore(mockParticipantState);
 
         const { getByText, getByAltText } = render(
             <Provider store={store}>
-                {" "}
-                // Set context
                 <Item
                     image={image}
                     title={title}
@@ -88,8 +82,6 @@ describe("InventoryItem", () => {
         let currentStock = 0;
         const { getByText, getByAltText } = render(
             <Provider store={store}>
-                {" "}
-                // Set context
                 <Item
                     image={image}
                     title={title}
