@@ -25,13 +25,13 @@ export const cardItems = [
         title: "Important Links",
         content: [
             {
-                name: "Hackathon main site",
-                url: "https://www.facebook.com",
+                name: "NewHacks main site",
+                url: "https://www.newhacks.ca/",
                 icon: <OpenInNew />,
             },
             {
-                name: "Hardware Signout Site",
-                url: "https://hardware.newhacks.ca",
+                name: "NewHacks Devpost",
+                url: "https://newhacks-2022.devpost.com/?ref_feature=challenge&ref_medium=discover",
                 icon: <OpenInNew />,
             },
         ],
@@ -40,29 +40,45 @@ export const cardItems = [
         title: "General electronics aid",
         content: [
             {
-                name: "Test1 asdajslkd",
-                url: "https://www.youtube.com",
+                name: "Circuit Design App - Circuit.io",
+                url: "https://www.circuito.io/",
                 icon: <OpenInNew />,
             },
-            { name: "Test2", url: "https://www.youtube.com", icon: <OpenInNew /> },
             {
-                name: "Test3 asknd",
+                name: "Learn about Batteries - Battery University ",
+                url: "https://batteryuniversity.com/articles",
+                icon: <OpenInNew />,
+            },
+            {
+                name: "Learn Electronics - SparkFun",
                 url: "https://www.youtube.com",
                 icon: <OpenInNew />,
             },
-            { name: "Test4 blah", url: "https://www.youtube.com", icon: <GetApp /> },
-            { name: "Test5", url: "https://www.youtube.com", icon: <GetApp /> },
+            {
+                name: "Electronics Tutorials - GreatScott",
+                url: "https://www.youtube.com",
+                icon: <OpenInNew />,
+            },
+            {
+                name: "Learn Aruino Programming",
+                url: "https://www.halvorsen.blog/documents/technology/resources/resources/Arduino/Programming%20with%20Arduino.pdf",
+                icon: <GetApp />,
+            },
         ],
     },
     {
         title: "Stores nearby",
         content: [
             {
-                name: "Home Hardware",
-                url: "https://www.facebook.com",
+                name: "Canada Computers",
+                url: "https://www.canadacomputers.com/",
                 icon: <PinDrop />,
             },
-            { name: "Test2", url: "https://www.facebook.com", icon: <PinDrop /> },
+            {
+                name: "Home Hardware",
+                url: "https://www.homehardware.ca/en/store/16093",
+                icon: <PinDrop />,
+            },
         ],
     },
 ];
