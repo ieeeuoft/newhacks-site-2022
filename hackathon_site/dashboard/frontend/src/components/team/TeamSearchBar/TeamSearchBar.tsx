@@ -5,7 +5,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import SearchIcon from "@material-ui/icons/Search";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Formik, FormikValues } from "formik";
 import { getTeamsWithSearchThunk } from "slices/event/teamAdminSlice";
